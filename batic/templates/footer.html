@@ -1,0 +1,161 @@
+<div class="sidenav-overlay"></div>
+<div class="drag-target"></div>
+<!-- BEGIN: Footer-->
+<footer class="footer footer-static footer-light">
+    <p class="clearfix mb-0">
+        <span class="float-md-start d-block d-md-inline-block mt-25">COPYRIGHT &copy; 2024<a class="ms-25" href="#" target="_blank">Batic</a>
+            <span class="d-none d-sm-inline-block">, All rights Reserved</span>
+        </span>
+    </p>
+</footer>
+<button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
+<!-- END: Footer-->
+<div class="window-loader"><span class="loader"></span></div>
+
+<div class="modal fade" id="taskTimerModal" tabindex="-1" aria-labelledby="taskTimerModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="taskTimerModalLabel">{{_('Start Timer')}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="timer-count">
+                    <div class="timer-count-number">
+                        <h2 ng-if="!taskTimer.is_active">00:00:00</h2>
+                        <h2 ng-if="taskTimer.is_active">{{ "{{taskTimer.data.hours}}:{{taskTimer.data.minutes}}:{{taskTimer.data.seconds}}" }}</h2>
+                    </div>
+                    <div class="timer-count-btns" ng-if="taskTimer.is_active">
+                        <button type="button" class="btn btn-pause" ng-if="!taskTimer.is_pause" ng-click="taskTimer.pause()"><i class="fas fa-pause"></i></button>
+                        <button type="button" class="btn btn-play" ng-if="taskTimer.is_pause" ng-click="taskTimer.resume()"><i class="fas fa-play"></i></button>
+                        <button type="button" class="btn btn-stop" ng-click="taskTimer.stop()"><i class="fas fa-stop"></i></button>
+                    </div>
+                </div>
+                <div class="form-group mt-2">
+                    <label for="taskTimer-selected_task" class="form-control-label">{{_('Task')}}</label>
+                    <select id="taskTimer-selected_task" class="form-select chosen-select" ng-model="taskTimer.selected_task">
+                        <option value="" default selected hidden>{{_('Select Task')}}</option>
+                        <option ng-repeat="task in employee_task_list" value="{{'{{task.value}}'}}">{{" {{task.description}} "}}</option>
+                    </select>
+                </div>
+                <div class="form-group mt-2">
+                    <label for="taskTimer-selected_task_description" class="form-control-label">{{_('Description')}}</label>
+                    <textarea class="form-control animate__animated animate__fast" id="taskTimer-selected_task_description" rows="1" ng-model="taskTimer.selected_task_description" ng-class="(taskTimer.errors.selected_task_description)?'is-invalid animate__shakeX':''" style="min-height:48px;"></textarea>
+                    <div class="invalid-feedback"><i class="far fa-info-circle mr-1"></i> {{" {{taskTimer.errors.selected_task_description}} "}}</div>
+                </div>
+                <div class="card mb-1" ng-if="!taskTimer.is_active">
+                    <div class="card-header">
+                        <h4 class="mb-0">{{_("Reactive Tasks")}} <small style="position:relative;top:-2px;" ng-bind="'( '+reactiveWorkTimeList.length+' )'"></small></h4>
+                    </div>
+                    <div class="card-body" style="padding-bottom:10px;padding-left: 10px;padding-right: 10px">
+                        <div style="height:170px;overflow: auto;padding: 0 10px;">
+                            <ul class="list-group" ng-repeat="task in reactiveWorkTimeList" style="margin-bottom:10px;">
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="me-auto">
+                                        <div class="font-w-600" ng-bind="task.task"></div>
+                                        <small class="text-secondary" ng-bind="task.description"></small>
+                                    </div>
+                                    <div>
+                                        <div class="text-right" style="margin-bottom:6px;">
+                                            <button class="btn btn-sm btn-info" style="padding: 4px 6px;min-width: 70px;" ng-click="taskTimer.reactive(task)" title="{{_('Reactive Work')}}">
+                                                <i class="far fa-clock mr-1"></i> {{_("Start")}}
+                                            </button>
+                                        </div>
+                                        <span class="text-secondary"><i class="fal fa-clock"></i>  {{" {{task.spend_session_time}} "}}</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-outline-danger" data-bs-dismiss="modal">{{_('Close')}}</button>
+                <button type="button" class="btn btn-sm btn-info" ng-if="!taskTimer.is_active" ng-click="taskTimer.start()" ng-disabled="!taskTimer.selected_task">{{_('Start Working')}}</button>
+                <button type="button" class="btn btn-sm btn-success" ng-if="taskTimer.is_active" ng-click="taskTimer.save()">{{_('Save')}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form method="post" ng-submit="user_profile.submit($event)">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="profileModalLabel">{{_("Edit Profile")}}</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body profile-modal-body" ng-class="{'modal-loading':user_profile.is_loading}">
+                    <div class="profile-modal-photo">
+                        <img class="rounded" ng-src="{{ " {{(user_profile.data.user_image.length)?user_profile.data.user_image:'/assets/batic/images/user.png'}}" }}" alt="avatar" height="80" width="80">
+                        <button type="button" class="btn btn-sm btn-secondary" ng-click="user_profile.change_photo()"><i class="far fa-camera mr-1"></i> {{_('Change Photo')}}</button>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6">
+                            <div class="mb-1">
+                                <label for="first_name" class="form-label" style="margin-bottom:5px;">{{_('First Name')}}</label>
+                                <input type="text" class="form-control" ng-model="user_profile.data.first_name" id="first_name" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-1">
+                                <label for="last_name" class="form-label" style="margin-bottom:5px;">{{_('Last Name')}}</label>
+                                <input type="text" class="form-control" ng-model="user_profile.data.last_name" id="last_name">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-1">
+                                <label for="phone" class="form-label" style="margin-bottom:5px;">{{_('Phone Number')}}</label>
+                                <input type="text" class="form-control" ng-model="user_profile.data.phone" id="phone">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-1">
+                                <label class="form-label" style="margin-bottom:15px;">{{_('Gender')}}</label>
+                                <div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender" ng-model="user_profile.data.gender" id="gender-Male" value="Male">
+                                        <label class="form-check-label" for="gender-Male">{{_("Male")}}</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender" ng-model="user_profile.data.gender" id="gender-Female" value="Female">
+                                        <label class="form-check-label" for="gender-Female">{{_("Female")}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-bordered table-sm">
+                        <thead>
+                        <tr>
+                            <th>{{_("Change Password")}}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>
+                                <duv class="row">
+                                    <div class="col-md-12 mb-1">
+                                        <label for="password" class="form-label" style="margin-bottom:5px;">{{_('Password')}}</label>
+                                        <input type="password" class="form-control form-control-sm" ng-model="user_profile.data.password" id="password" ng-class="{'is-invalid':user_profile.errors.password}" autocomplete="off">
+                                        <div class="invalid-feedback" ng-bind="user_profile.errors.password"></div>
+                                    </div>
+                                    <div class="col-md-12 mb-1">
+                                        <label for="confirm_password" class="form-label" style="margin-bottom:5px;">{{_('Confirm Password')}}</label>
+                                        <input type="password" class="form-control form-control-sm" ng-model="user_profile.data.confirm_password" id="confirm_password" ng-class="{'is-invalid':user_profile.errors.confirm_password}" autocomplete="off">
+                                        <div class="invalid-feedback" ng-bind="user_profile.errors.confirm_password"></div>
+                                    </div>
+                                </duv>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" ng-disabled="user_profile.is_loading" class="btn btn-primary">{{_("Update")}}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

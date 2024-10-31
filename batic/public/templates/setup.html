@@ -1,0 +1,17 @@
+<div class="dashboard-layout">
+    <div class="row">
+        <div class="col-xxl-3 col-xl-4 col-lg-6" ng-repeat="workspace in app.workspaces" ng-if="reports[workspace.name] && reports[workspace.name].length">
+            <div class="dashboard-reports">
+                <div class="dashboard-reports-header"><i class="mr-1" ng-class="app.get_workspace_icon((workspace.name).toLowerCase())"></i> {{ __lang('Setup of %s') | sprintf:[__lang(workspace.name | docTypeTitle)] }}</div>
+                <div class="dashboard-reports-body">
+                    <div class="row row-sm">
+                        <div class="col-xxl-12" ng-repeat="shortcut in reports[workspace.name]">
+                            <a class="dashboard-reports-link" ui-sref="{{(shortcut.is_single_doctype==1)?'app.form({workspace:convertToSlug(workspace.name),doctype:convertToSlug(shortcut.link_to),type:Ctrl.view,docname:shortcut.link_to})':'app.list({workspace:convertToSlug(workspace.name),doctype:convertToSlug(shortcut.link_to)})'}}">{{__lang(shortcut.label)}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

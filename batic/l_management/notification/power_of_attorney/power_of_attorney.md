@@ -1,0 +1,1 @@
+This is a notification for expiration of power of attorney document.

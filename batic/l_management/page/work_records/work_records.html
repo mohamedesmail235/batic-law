@@ -1,0 +1,32 @@
+<div class="emp-work-status">
+    <div class="status">
+        <h4>All Time Work Hours</h4>
+        <h4>{{all_time_work_spend_time_string}}</h4>
+    </div>
+    <div class=" status">
+        <h4>Currently Working</h4>
+        <h4>{{currently_working_string}}</h4>
+    </div>
+    <div class="status ">
+        <h4>Last 7 days Work Hours</h4>
+        <h4>{{last7Days_work_hour_string}}</h4>
+    </div>
+    <div class="status">
+        <h4>Last 7 days Work Attempts</h4>
+        <h4>{{last7Days_work_attempts}}</h4>
+    </div>
+</div>
+<div class="titleList">
+    <h2>Recent Work TimeSheet</h2>
+</div>
+
+<div class="invoiceContainer {{hiddeTable}}" id="containerRoot">
+    <div class="invoiceHeader">
+        <h4>Start Session</h4>
+        <h4>End Session</h4>
+        <h4>Case</h4>
+        <h4>Task</h4>
+        <h4>Spend Time</h4>        
+    </div>
+    {{workTimeSheet}}
+</div>

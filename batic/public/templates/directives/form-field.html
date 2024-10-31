@@ -1,0 +1,19 @@
+<div ng-class="{'form-group':(!isInTable && !hideField && field.type && field.name)}">
+    <field-data ng-if="field.type=='Data'" hide-label="hideLabel" hide-field="hideField" readonly-field="readonlyField" size-small="sizeSmall" field="field" ng-model="$parent.ngModel"></field-data>
+    <field-small-text ng-if="field.type=='Small Text'" hide-label="hideLabel" hide-field="hideField" readonly-field="readonlyField" size-small="sizeSmall" field="field" ng-model="$parent.ngModel"></field-small-text>
+    <field-editor-text ng-if="field.type=='Editor Text'" hide-label="hideLabel" hide-field="hideField" readonly-field="readonlyField" size-small="sizeSmall" field="field" ng-model="$parent.ngModel" form-data-model="$parent.$root.formView.form.data"></field-editor-text>
+    <field-currency ng-if="field.type=='Currency'" hide-label="hideLabel" hide-field="hideField" readonly-field="readonlyField" size-small="sizeSmall" field="field" ng-model="$parent.ngModel"></field-currency>
+    <field-float ng-if="field.type=='Float'" hide-label="hideLabel" hide-field="hideField" readonly-field="readonlyField" size-small="sizeSmall" field="field" ng-model="$parent.ngModel"></field-float>
+    <field-int ng-if="field.type=='Int'" hide-label="hideLabel" hide-field="hideField" readonly-field="readonlyField" size-small="sizeSmall" field="field" ng-model="$parent.ngModel"></field-int>
+    <field-date ng-if="field.type=='Date'" hide-label="hideLabel" hide-field="hideField" readonly-field="readonlyField" size-small="sizeSmall" field="field" ng-model="$parent.ngModel"></field-date>
+    <field-hijri-date ng-if="field.type=='Date Hijri'" hide-label="hideLabel" hide-field="hideField" readonly-field="readonlyField" size-small="sizeSmall" field="field" ng-model="$parent.ngModel"></field-hijri-date>
+    <field-date-time ng-if="field.type=='Datetime'" hide-label="hideLabel" hide-field="hideField" readonly-field="readonlyField" size-small="sizeSmall" field="field" ng-model="$parent.ngModel"></field-date-time>
+    <field-time ng-if="field.type=='Time'" hide-label="hideLabel" hide-field="hideField" readonly-field="readonlyField" size-small="sizeSmall" field="field" ng-model="$parent.ngModel"></field-time>
+    <field-link ng-if="field.type=='Link'" new-button-text="$parent.$root.__lang('Create New {0}',[field.link.doctype])" hide-label="hideLabel" hide-field="hideField" readonly-field="readonlyField" size-small="sizeSmall" field="field" ng-model="$parent.ngModel"></field-link>
+    <field-select ng-if="field.type=='Select'" hide-label="hideLabel" hide-field="hideField" readonly-field="readonlyField" size-small="sizeSmall" field="field" ng-model="$parent.ngModel"></field-select>
+    <field-attach-image ng-if="field.type=='Attach Image' || field.type=='Attach File'" hide-label="hideLabel" hide-field="hideField" readonly-field="readonlyField" size-small="sizeSmall" field="field" ng-model="$parent.ngModel"></field-attach-image>
+    <field-check ng-if="field.type=='Check'" hide-label="hideLabel" hide-field="hideField" readonly-field="readonlyField" size-small="sizeSmall" field="field" ng-model="$parent.ngModel" is-in-table="isInTable" table-row-index="tableRowIndex"></field-check>
+    <field-multi-select ng-if="field.type=='MultiSelectList'" hide-label="hideLabel" readonly-field="readonlyField" hide-field="hideField" size-small="sizeSmall" field="field" ng-model="$parent.ngModel"></field-multi-select>
+    <field-table ng-if="field.type=='Table'" hide-field="hideField" form-data-model="$parent.$root.formView.form.data" hide-label="hideLabel" size-small="sizeSmall" field="field" ng-model="$parent.ngModel"></field-table>
+    <field-html ng-if="field.type=='HTML'" hide-label="hideLabel" hide-field="hideField" field="field" ng-model="$parent.ngModel"></field-html>
+</div>

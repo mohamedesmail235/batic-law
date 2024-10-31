@@ -1,0 +1,57 @@
+
+<div class="order-status">
+    <div class="status">
+        <h4>Total Orders</h4>
+        <h4>{{total_orders}}</h4>
+    </div>
+    <div class=" status">
+        <h4>Need To be Review</h4>
+        <h4>{{need_review}}</h4>
+    </div>
+    <div class="status ">
+        <h4>On Processing</h4>
+        <h4>{{on_processing}}</h4>
+    </div>
+    <div class="status">
+        <h4>Order Completed</h4>
+        <h4>{{completed}}</h4>
+    </div>
+</div>
+
+<div class="titleList">
+    <h3 style="Padding-bottom: 2%">Recent Cases</h3>
+    <div class="buttonList">
+        <button  type="button" class="float-right CSbtn btn-outline-dark" id="allOrderlist">View All</button>
+        <button  type="button" class="float-right CSbtn btn-outline-dark" id="createOrder">Add new Order</button>
+    </div>
+</div>
+
+
+<!--<div id="orderTable"></div>-->
+
+<div class="invoiceContainer">
+    <div class="invoiceHeader">
+        <h4>Name</h4>
+        <h4>Client</h4>
+        <h4> Contract</h4>
+        <h4>Consultation</h4>
+        <h4>Status</h4>
+    </div>
+    {{orderTableData}}
+</div>
+
+<!-- <div class="tableHandle">
+    <table>
+            <tr>
+              <th>Name</th>
+              <th>Client</th>
+              <th>Contract</th>
+              <th>Consultation</th>
+              <th>Status</th>
+            </tr> 
+
+            {{orderTableData}}
+    </table>
+<div> -->
+
+    

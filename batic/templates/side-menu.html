@@ -1,0 +1,67 @@
+<div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
+    <div class="navbar-header">
+        <ul class="nav navbar-nav flex-row">
+            <li class="nav-item me-auto">
+                <a class="navbar-brand" href="">
+                    <span class="brand-logo">
+                            <img width="32" height="32" src="/assets/batic/images/logo-icon.png">
+                    </span>
+                    <h2 class="brand-text">Batic</h2>
+                </a>
+            </li>
+            <li class="nav-item nav-toggle">
+                <a class="nav-link modern-nav-toggle pe-0" data-bs-toggle="collapse">
+                    <i class="d-block d-xl-none text-primary toggle-icon font-medium-4" data-feather="x"></i>
+                    <i class="d-none d-xl-block collapse-toggle-icon font-medium-4  text-primary" data-feather="disc" data-ticon="disc"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="shadow-bottom"></div>
+    <div class="main-menu-content">
+        <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+            <li class="nav-item" ui-sref-active="active">
+                <a ui-sref="app.dashboard" class="d-flex align-items-center">
+                    <i class="far fa-tachometer-alt"></i><span class="menu-title text-truncate" data-i18n="Dashboard">{{ _('Dashboard') }}</span>
+                </a>
+            </li>
+            <li class="nav-item" ui-sref-active="active">
+                <a ui-sref="app.page({page:'top-employee'})" class="d-flex align-items-center">
+                    <i class="far fa-users"></i><span class="menu-title text-truncate" data-i18n="Top Employees">{{ _('Top Employees') }}</span>
+                </a>
+            </li>
+            <!--            <div ng-transclude ng-repeat="item in app.sideMenu" ng-include="'/assets/batic/templates/partials/menu.template.html'"></div>-->
+            <li class="navigation-header" ng-repeat-start="item in app.sideMenu"><span ng-bind="item.label"></span></li>
+            <!-- Custom template goes here -->
+            <li class="nav-item" ng-repeat="link in item.list" ng-class="active_sub_route('parent',(link.label).toLowerCase(),link.link_to.toLowerCase())">
+                <a ng-if="link.type=='link' && link.link_type!='page'" ui-sref="app.list({parent:convertToSlug(item.label),doctype:convertToSlug(link.link_to)})" class="d-flex align-items-center">
+                    <i ng-class="link.icon"></i><span class="menu-title text-truncate">{{ '{{__lang(link.label)}}' }}</span>
+                </a>
+                <a ng-if="link.type=='link' && link.link_type=='page'" ui-sref="app.page({page:link.link_to})" class="d-flex align-items-center">
+                    <i ng-class="link.icon"></i><span class="menu-title text-truncate">{{ '{{__lang(link.label)}}' }}</span>
+                </a>
+                <a class="d-flex align-items-center" ng-if="link.type=='dropdown'">
+                    <i ng-class="(link.icon)?link.icon:'far fa-cog'"></i>
+                    <span class="menu-title text-truncate">{{ '{{__lang(link.label)}}' }}</span>
+                </a>
+                <ul class="menu-content" ng-if="link.type=='dropdown' && link.links">
+                    <li ng-repeat="sub_link in link.links" ui-sref-active="active" ng-class="{'active active-menu-item':((activeDoctype | docTypeTitle) == sub_link.link_to)}">
+                        <a class="d-flex align-items-center" ng-if="sub_link.is_single==0 && sub_link.link_type!='page'" ui-sref="app.list({parent:convertToSlug(link.label),doctype:convertToSlug(sub_link.link_to)})">
+                            <i class="far fa-circle"></i>
+                            <span class="menu-item text-truncate">{{ '{{__lang(sub_link.label)}}' }}</span>
+                        </a>
+                        <a class="d-flex align-items-center" ng-if="sub_link.is_single==0 && sub_link.link_type && sub_link.link_type=='page'" ui-sref="app.page({page:sub_link.link_to})">
+                            <i class="far fa-circle"></i>
+                            <span class="menu-item text-truncate">{{ '{{__lang(sub_link.label)}}' }}</span>
+                        </a>
+                        <a class="d-flex align-items-center" ng-if="sub_link.is_single==1" ui-sref="app.form({parent:convertToSlug(link.label),doctype:convertToSlug(sub_link.link_to),type:'view',docname:sub_link.link_to})">
+                            <i class="far fa-circle"></i>
+                            <span class="menu-item text-truncate">{{ '{{__lang(sub_link.label)}}' }}</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li ng-repeat-end></li>
+        </ul>
+    </div>
+</div>

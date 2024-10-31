@@ -1,0 +1,252 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-02-03 16:58:54.645769",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "case_kind",
+  "case_number",
+  "attorney",
+  "claimant",
+  "judge",
+  "type",
+  "status",
+  "start_date",
+  "court",
+  "city",
+  "tab_break_25zqn",
+  "legal_adaptation",
+  "problems_section_section",
+  "problems",
+  "fact_section_section",
+  "facts",
+  "document",
+  "what_has_been_reached_to_resolve_the_dispute_section",
+  "competent_authority",
+  "necessary_steps",
+  "filing_conditions",
+  "tab_break_swyak",
+  "my_attendance",
+  "number_of_pages",
+  "there_is_no",
+  "end_date",
+  "end_date_hijri",
+  "operative",
+  "acquisition_date",
+  "acquisition_date_hijri"
+ ],
+ "fields": [
+  {
+   "fieldname": "case_number",
+   "fieldtype": "Data",
+   "label": "Case Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Suit Type",
+   "options": "Injury\nContract\nLand\nDefamation",
+   "reqd": 1
+  },
+  {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Draft\nPending\nApproved\nRejected\nCancelled"
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "hidden": 1,
+   "label": "Start Date"
+  },
+  {
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "label": "Judgement Date (AD)"
+  },
+  {
+   "fieldname": "attorney",
+   "fieldtype": "Link",
+   "label": "Attorney",
+   "options": "Employee",
+   "reqd": 1
+  },
+  {
+   "fieldname": "case_kind",
+   "fieldtype": "Select",
+   "label": "Case Kind",
+   "options": "Criminal\nCivil\nTraffic"
+  },
+  {
+   "fieldname": "claimant",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Claimant",
+   "options": "Client",
+   "reqd": 1
+  },
+  {
+   "fieldname": "judge",
+   "fieldtype": "Link",
+   "label": "Presented To",
+   "options": "Judge"
+  },
+  {
+   "fieldname": "court",
+   "fieldtype": "Link",
+   "label": "Court",
+   "options": "Court"
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Data",
+   "label": "City"
+  },
+  {
+   "fieldname": "legal_adaptation",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "Legal Adaptation of the suit",
+   "reqd": 1
+  },
+  {
+   "fieldname": "problems",
+   "fieldtype": "Small Text",
+   "label": "Problems"
+  },
+  {
+   "fieldname": "document",
+   "fieldtype": "Attach",
+   "label": "Document"
+  },
+  {
+   "fieldname": "competent_authority",
+   "fieldtype": "Data",
+   "label": "The competent authority according to the legal adaptation"
+  },
+  {
+   "fieldname": "necessary_steps",
+   "fieldtype": "Data",
+   "label": "The necessary steps according to the specific dates"
+  },
+  {
+   "fieldname": "filing_conditions",
+   "fieldtype": "Data",
+   "label": "Conditions for filing an objection / lawsuit"
+  },
+  {
+   "default": "0",
+   "fieldname": "my_attendance",
+   "fieldtype": "Check",
+   "label": "My Attendance"
+  },
+  {
+   "default": "0",
+   "fieldname": "number_of_pages",
+   "fieldtype": "Check",
+   "label": "Number of Pages"
+  },
+  {
+   "default": "0",
+   "fieldname": "there_is_no",
+   "fieldtype": "Check",
+   "label": "There is no"
+  },
+  {
+   "fieldname": "end_date_hijri",
+   "fieldtype": "Date",
+   "label": "Judgement Date (Hijri)"
+  },
+  {
+   "fieldname": "operative",
+   "fieldtype": "Small Text",
+   "label": "Operative"
+  },
+  {
+   "fieldname": "acquisition_date",
+   "fieldtype": "Date",
+   "label": "Deterministic Acquisition Date (AD)"
+  },
+  {
+   "fieldname": "acquisition_date_hijri",
+   "fieldtype": "Date",
+   "label": "Deterministic Acquisition Date (Hijri)"
+  },
+  {
+   "fieldname": "tab_break_25zqn",
+   "fieldtype": "Tab Break",
+   "label": "Department of legal adaptation of the incident"
+  },
+  {
+   "fieldname": "tab_break_swyak",
+   "fieldtype": "Tab Break",
+   "label": "Verdict"
+  },
+  {
+   "fieldname": "problems_section_section",
+   "fieldtype": "Section Break",
+   "label": "Problems Section"
+  },
+  {
+   "fieldname": "fact_section_section",
+   "fieldtype": "Section Break",
+   "label": "Fact Section"
+  },
+  {
+   "fieldname": "facts",
+   "fieldtype": "Small Text",
+   "label": "Facts"
+  },
+  {
+   "fieldname": "what_has_been_reached_to_resolve_the_dispute_section",
+   "fieldtype": "Section Break",
+   "label": "What has been reached to resolve the dispute"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-03-13 14:09:12.761766",
+ "modified_by": "Administrator",
+ "module": "Cases",
+ "name": "Case Doctype",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Head Lawyer",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

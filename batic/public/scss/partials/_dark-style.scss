@@ -1,0 +1,73 @@
+.dark-layout {
+  .content-body .card.card-page.loading:before {
+    background: rgb(22 29 49 / 49%);
+  }
+
+  .table.ng-datatable {
+    border: 1px solid #525a71 !important;
+  }
+
+  .table.ng-datatable thead th {
+    background: #161d31 !important;
+    color: #c7dbee !important;
+  }
+
+  .table.ng-datatable tbody td {
+    border-top: 1px solid #525a71 !important;
+    color: #f3f9ff;
+  }
+
+  .table.ng-datatable tbody tr:hover {
+    background: #394462 !important;
+  }
+
+  .table.ng-datatable tbody td .docname-link {
+    color: #a39cff;
+  }
+
+  .text-secondary {
+    color: #989fb4;
+  }
+
+  .formView.form-loading:after {
+    background: rgb(40 48 70 / 81%);
+  }
+
+  .content-body .card.card-page .card-body .section-form-head {
+    background: #161d30;
+    border: 1px solid #505b79;
+    color: #aeb9c3;
+  }
+
+  .content-body .card.card-page .card-body .section-form-body {
+    border: 1px solid #505b79;
+  }
+
+  .content-body .card.card-page .child-datatable > h2 {
+    color: #ced0d4;
+  }
+
+  .content-body .card.card-page .child-datatable .table-child thead th {
+    background: #505b79;
+    color: #ced0d5;
+  }
+
+  .datatable-checkbox label {
+    background: #7987ad;
+    border: 1px solid #7987ad;
+  }
+
+  .windget-reports-link {
+    background: #161d31;
+    border: 1px solid #4f566a;
+    color: #bec1c6;
+  }
+
+  .bg-white {
+    background-color: #283046;
+  }
+}
+
+.dark-layout input.form-control:not(:focus), .dark-layout select.form-select:not(:focus), .dark-layout textarea.form-control:not(:focus) {
+  border-color: #505b79;
+}

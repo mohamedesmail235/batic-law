@@ -1,0 +1,33 @@
+<div class="print-format-gutter">
+    <div class="print-format landscape" ng-if="params && (params.report_name==report_data.name)" style="{{"{{(report_data.columns.length>20)?'font-size:4.0pt':''}}"}}">
+        <h2>
+            {{ "{{report_data.name}}" }}
+            <button type="button" class="btn btn-print float-right btn-primary" ng-click="print()">{{_("Print")}}</button>
+        </h2>
+        <hr/>
+        <h5 ng-repeat="filter in filters_list">
+            <b class="d-inline-block" ng-bind="filter.label"></b> <span class="d-inline-block" ng-bind="filter.value"></span>
+        </h5>
+        <hr/>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th ng-repeat="column in report_data.columns" ng-bind="column.name"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="row in report_data.data" style="height: 30px;">
+                <td><span ng-bind="$index+1"></span></td>
+                <td ng-repeat="column in report_data.columns" style="{{" {{(column.id==
+                'account' && row.indent >= 1)?'padding-left:'+(20*row.indent)+'px !important;':''}}"}}">
+                <div ng-bind-html="format_column(row[column.id],column,row)" style="font-weight:400;"></div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="print-format landscape" ng-if="!params  || !params.report_name || params.report_name!=report_data.name">
+        <div class="alert alert-danger">{{_("Invalid Report Data")}}</div>
+    </div>
+</div>

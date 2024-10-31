@@ -1,0 +1,33 @@
+{
+ "attach_print": 0,
+ "channel": "System Notification",
+ "condition": "",
+ "creation": "2023-02-27 14:42:06.496978",
+ "date_changed": "expire_date",
+ "days_in_advance": 1,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Power of Attorney",
+ "enabled": 1,
+ "event": "Days Before",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "This is a notification for expiration of power of attorney document.",
+ "modified": "2023-02-28 12:06:23.186807",
+ "modified_by": "Administrator",
+ "module": "L-Management",
+ "name": "Power of Attorney",
+ "owner": "Administrator",
+ "property_value": "",
+ "recipients": [
+  {
+   "receiver_by_document_field": "",
+   "receiver_by_role": "Batic Agent"
+  }
+ ],
+ "send_system_notification": 1,
+ "send_to_all_assignees": 0,
+ "set_property_after_alert": "",
+ "subject": "{{ doc.name }} expiring",
+ "value_changed": "expire_date"
+}

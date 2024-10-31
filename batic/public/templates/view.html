@@ -1,0 +1,124 @@
+<div class="page-breadcrumb" aria-label="breadcrumb">
+    <ul class="breadcrumb">
+        <li class="breadcrumb-item"><a ui-sref="app.accounting.dashboard" class="text-decoration-none text-dark"><i class="fal fa-file-invoice-dollar"></i> {{ __lang('Accounting') }}</a></li>
+        <li class="breadcrumb-item active"><a ui-sref="app.accounting.list({doctype:accounting.doctype})">{{ accounting.doctype | docTypeTitle }}</a></li>
+        <li class="breadcrumb-item active">{{ __lang('New') }}</li>
+    </ul>
+    <div class="breadcrumb-buttons text-right dropdown">
+        <button type="button" class="btn btn-primary" ng-click="accounting.toolbar.save($event)">
+            {{ __lang('Save') }}
+        </button>
+    </div>
+</div>
+<div class="card card-page">
+    <div class="card-body">
+        <form action="" method="post" class="formView" ng-class="{'form-loading':Ctrl.formViewLoaded}">
+            <div class="row">
+                <div class="col-lg-6 form-group">
+                    <label for="date" class="cursor-pointer">{{ __lang('Date') }}</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend"><span class="input-group-text"><i class="fal fa-calendar-alt"></i></span></div>
+                        <input ng-model="accounting.form.data.date" data-toggle="datepicker" type="text" id="date" class="form-control">
+                    </div>
+                </div>
+                <div class="col-lg-6 form-group">
+                    <label for="company" class="cursor-pointer">{{ __lang('Company') }}</label>
+                    <select ng-model="accounting.form.data.company" id="company" class="chosen-select form-control" data-placement="{{ __lang('Select Company') }}">
+                        <option ng-repeat="company in accounting.form.companies" value="{{ company.company_name }}">{{ company.company_name }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 form-group">
+                    <label for="series" class="cursor-pointer">{{ __lang('Series') }}</label>
+                    <select ng-model="accounting.form.data.series" id="series" class="form-control">
+                        <option ng-repeat="series in accounting.form.naming_series" value="{{ series }}">{{ series }}</option>
+                    </select>
+                </div>
+                <div class="col-lg-6 form-group">
+                    <label for="reference-number" class="cursor-pointer">{{ __lang('Reference Number') }}</label>
+                    <input ng-model="accounting.form.data.reference_number" type="text" id="reference-number" class="form-control">
+                </div>
+            </div>
+            <div class="child-datatable">
+                <h2>{{ __lang('Items') }}</h2>
+                <table class="table table-bordered table-sm table-align-top table-child">
+                    <thead>
+                    <tr>
+                        <th style="width:70px;min-width:70px;max-width:70px;">
+                            <div style="width:70px;min-width:70px;">
+                                <div class="datatable-checkbox d-inline-block mr-2 ml-1">
+                                    <input type="checkbox" id="select-all" ng-model="accounting.form.accounting_table.is_select_all" ng-click="accounting.form.accounting_table.select_all()" value="true">
+                                    <label for="select-all"></label>
+                                </div>
+                                {{ __lang('No.') }}
+                            </div>
+                        </th>
+                        <th style="width:30%;">{{ __lang('Account') }}</th>
+                        <th style="width:100px;">{{ __lang('Debit') }}</th>
+                        <th style="width:100px;">{{ __lang('Credit') }}</th>
+                        <th style="width:140px;">{{ __lang('Cost Center') }}</th>
+                        <th style="width:140px;">{{ __lang('Comment') }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-if="!accounting.form.data.accounting_list.length">
+                        <td colspan="6">
+                            <div class="table-child-no-items-rows">
+                                <svg width="34" height="40" viewBox="0 0 34 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M33 35.9989C33 37.6557 31.6568 39 30 39L4.00041 38.9995C2.3435 38.9995 1.00036 37.656 1.00025 35.9991C1.00016 34.5888 1 33.3235 1 32.1238V4.00023C1 2.34337 2.34356 1.00023 4.00042 1.00017C5.89004 1.0001 7.515 1 8.82222 1H25.1778C26.3765 1 28.2434 1.00008 30.0002 1.00015C31.657 1.00021 33 2.34337 33 4.00022V32.1238C33 33.4586 33 34.3864 33 35.9989Z" stroke="#A6B1B9" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M9 12C10.1046 12 11 11.1046 11 10C11 8.89543 10.1046 8 9 8C7.89543 8 7 8.89543 7 10C7 11.1046 7.89543 12 9 12Z" stroke="#A6B1B9" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M9 22C10.1046 22 11 21.1046 11 20C11 18.8954 10.1046 18 9 18C7.89543 18 7 18.8954 7 20C7 21.1046 7.89543 22 9 22Z" stroke="#A6B1B9" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M15 8.5H27" stroke="#A6B1B9" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M15 18.5H26" stroke="#A6B1B9" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M15 11.5H23" stroke="#A6B1B9" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M15 21.5H23" stroke="#A6B1B9" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                {{ __lang('No Data') }}
+                            </div>
+                        </td>
+                    </tr>
+                    <tr ng-repeat="account in accounting.form.data.accounting_list">
+                        <td>
+                            <div class="datatable-checkbox d-inline-block mr-2 ml-1">
+                                <input type="checkbox" id="item-{{ account.uid }}" ng-change="accounting.form.accounting_table.select_id()" ng-model="accounting.form.accounting_table.selected_rows[account.uid]" value="true">
+                                <label for="item-{{ account.uid }}"></label>
+                            </div>
+                            {{ $index + 1 }}
+                        </td>
+                        <td>
+                            <input type="text" class="form-control form-control-sm item-autocomplete" ng-model="account.name" placeholder="{{ __lang('Account Name') }}">
+                        </td>
+                        <td>
+                            <div class="input-group input-group-sm">
+                                <input type="text" class="form-control" ng-model="account.debit" fcsa-number="{maxDecimals:2,min:0,preventInvalidInput:true}">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">{{ app.defaults.currency }}</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="input-group input-group-sm">
+                                <input type="text" class="form-control" ng-model="account.credit" fcsa-number="{maxDecimals:2,min:0,preventInvalidInput:true}">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">{{ app.defaults.currency }}</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control form-control-sm" ng-model="account.cost_center">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control form-control-sm" ng-model="account.comment">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="text-left mt-2">
+                    <button type="button" ng-if="accounting.form.accounting_table.selected_ids.length" ng-click="accounting.form.accounting_table.delete_row(accounting.form.data.accounting_list)" class="btn btn-xs btn-danger">{{ __lang('Delete') }}</button>
+                    <button type="button" ng-click="accounting.form.accounting_table.add_row(accounting.form.data.accounting_list)" class="btn btn-xs btn-light">{{ __lang('Add Row') }}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

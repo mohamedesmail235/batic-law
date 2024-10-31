@@ -1,0 +1,119 @@
+<nav class="header-navbar navbar navbar-expand-lg align-items-center floating-nav navbar-light navbar-shadow">
+    <div class="navbar-container d-flex content">
+        <div class="bookmark-wrapper d-flex align-items-center">
+            <ul class="nav navbar-nav d-xl-none">
+                <li class="nav-item"><a class="nav-link menu-toggle" href="#"><i class="ficon" data-feather="menu"></i></a></li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li class="nav-item d-none d-lg-block"><a class="nav-link nav-link-style"><i class="ficon" data-feather="moon"></i></a></li>
+            </ul>
+        </div>
+        <ul class="nav navbar-nav align-items-center ms-auto">
+            <li class="nav-item dropdown-timer mr-3" ng-if="app.user.info.employee_data && app.user.info.employee_data.name">
+                <button type="button" class="btn btn-sm" ng-class="(taskTimer.is_active)?'btn-info':'btn-secondary'" ng-click="taskTimer.open()" style="min-width:120px;">
+                    <span ng-if="!taskTimer.is_active"><i class="far fa-clock mr-1"></i> {{_('Start Timer')}}</span>
+                    <span ng-if="taskTimer.is_active">{{ "{{taskTimer.data.hours}}:{{taskTimer.data.minutes}}:{{taskTimer.data.seconds}}" }}</span>
+                </button>
+            </li>
+            <li class="nav-item dropdown dropdown-language">
+                <a class="nav-link dropdown-toggle" id="dropdown-flag" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flag-icon" ng-class="app.lang_list[(app.user.info.language)?app.user.info.language:'en'].flag"></i><span class="selected-language">{{ " {{app.lang_list[(app.user.info.language)?app.user.info.language:'en'].label}} " }}</span></a>
+                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-flag">
+                    <a class="dropdown-item" ng-click="app.change_lang('en')" data-language="en"><i class="flag-icon flag-icon-us"></i> English</a>
+                    <a class="dropdown-item" ng-click="app.change_lang('ar')" data-language="sa"><i class="flag-icon flag-icon-sa"></i> عربي</a>
+                </div>
+            </li>
+            <!--            <li class="nav-item nav-search"><a class="nav-link nav-link-search"><i class="ficon" data-feather="search"></i></a>-->
+            <!--                <div class="search-input">-->
+            <!--                    <div class="search-input-icon"><i data-feather="search"></i></div>-->
+            <!--                    <input class="form-control input" type="text" placeholder="Explore Trust..." tabindex="-1" data-search="search">-->
+            <!--                    <div class="search-input-close"><i data-feather="x"></i></div>-->
+            <!--                    <ul class="search-list search-list-main"></ul>-->
+            <!--                </div>-->
+            <!--            </li>-->
+            <!--            <li class="nav-item dropdown dropdown-notification me-25"><a class="nav-link" href="#" data-bs-toggle="dropdown"><i class="ficon" data-feather="bell"></i><span class="badge rounded-pill bg-danger badge-up">5</span></a>-->
+            <!--                <ul class="dropdown-menu dropdown-menu-media dropdown-menu-end">-->
+            <!--                    <li class="dropdown-menu-header">-->
+            <!--                        <div class="dropdown-header d-flex">-->
+            <!--                            <h4 class="notification-title mb-0 me-auto">Notifications</h4>-->
+            <!--                            <div class="badge rounded-pill badge-light-primary">6 New</div>-->
+            <!--                        </div>-->
+            <!--                    </li>-->
+            <!--                    <li class="scrollable-container media-list"><a class="d-flex" href="#">-->
+            <!--                        <a class="d-flex" href="#">-->
+            <!--                            <div class="list-item d-flex align-items-start">-->
+            <!--                                <div class="me-1">-->
+            <!--                                    <div class="avatar bg-light-danger">-->
+            <!--                                        <div class="avatar-content">MD</div>-->
+            <!--                                    </div>-->
+            <!--                                </div>-->
+            <!--                                <div class="list-item-body flex-grow-1">-->
+            <!--                                    <p class="media-heading"><span class="fw-bolder">Revised Order 👋</span>&nbsp;checkout</p><small class="notification-text"> MD Inc. order updated</small>-->
+            <!--                                </div>-->
+            <!--                            </div>-->
+            <!--                        </a>-->
+            <!--                        <div class="list-item d-flex align-items-center">-->
+            <!--                            <h6 class="fw-bolder me-auto mb-0">System Notifications</h6>-->
+            <!--                            <div class="form-check form-check-primary form-switch">-->
+            <!--                                <input class="form-check-input" id="systemNotification" type="checkbox" checked="">-->
+            <!--                                <label class="form-check-label" for="systemNotification"></label>-->
+            <!--                            </div>-->
+            <!--                        </div>-->
+            <!--                        <a class="d-flex" href="#">-->
+            <!--                            <div class="list-item d-flex align-items-start">-->
+            <!--                                <div class="me-1">-->
+            <!--                                    <div class="avatar bg-light-danger">-->
+            <!--                                        <div class="avatar-content"><i class="avatar-icon" data-feather="x"></i></div>-->
+            <!--                                    </div>-->
+            <!--                                </div>-->
+            <!--                                <div class="list-item-body flex-grow-1">-->
+            <!--                                    <p class="media-heading"><span class="fw-bolder">Server down</span>&nbsp;registered</p><small class="notification-text"> USA Server is down due to high CPU usage</small>-->
+            <!--                                </div>-->
+            <!--                            </div>-->
+            <!--                        </a><a class="d-flex" href="#">-->
+            <!--                        <div class="list-item d-flex align-items-start">-->
+            <!--                            <div class="me-1">-->
+            <!--                                <div class="avatar bg-light-success">-->
+            <!--                                    <div class="avatar-content"><i class="avatar-icon" data-feather="check"></i></div>-->
+            <!--                                </div>-->
+            <!--                            </div>-->
+            <!--                            <div class="list-item-body flex-grow-1">-->
+            <!--                                <p class="media-heading"><span class="fw-bolder">Sales report</span>&nbsp;generated</p><small class="notification-text"> Last month sales report generated</small>-->
+            <!--                            </div>-->
+            <!--                        </div>-->
+            <!--                    </a><a class="d-flex" href="#">-->
+            <!--                        <div class="list-item d-flex align-items-start">-->
+            <!--                            <div class="me-1">-->
+            <!--                                <div class="avatar bg-light-warning">-->
+            <!--                                    <div class="avatar-content"><i class="avatar-icon" data-feather="alert-triangle"></i></div>-->
+            <!--                                </div>-->
+            <!--                            </div>-->
+            <!--                            <div class="list-item-body flex-grow-1">-->
+            <!--                                <p class="media-heading"><span class="fw-bolder">High memory</span>&nbsp;usage</p><small class="notification-text"> BLR Server using high memory</small>-->
+            <!--                            </div>-->
+            <!--                        </div>-->
+            <!--                    </a>-->
+            <!--                    </li>-->
+            <!--                    <li class="dropdown-menu-footer"><a class="btn btn-primary w-100" href="#">Read all notifications</a></li>-->
+            <!--                </ul>-->
+            <!--            </li>-->
+            <li class="nav-item dropdown dropdown-user ms-1">
+                <a class="nav-link dropdown-toggle dropdown-user-link" id="dropdown-user" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="avatar">
+                        <img class="round" ng-src="{{ " {{(app.user.info.user_image.length)?app.user.info.user_image:'/assets/batic/images/user.png'}}" }}" alt="avatar" height="40" width="40">
+                        <span class="avatar-status-online"></span>
+                    </span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end" style="min-width:210px;" aria-labelledby="dropdown-user">
+                    <div class="w-100" style="padding: 5px 15px;">
+                        <b ng-bind="app.user.info.full_name"></b>
+                        <small class="d-block text-secondary" style="margin-top:8px;" ng-bind="app.user.info.email"></small>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" ng-click="user_profile.open()"><i class="me-50" data-feather="user"></i> {{ _("Edit Profile") }}</a>
+                    <a class="dropdown-item" onclick="baticApp.clear_cache();"><i class="me-50" data-feather="refresh-cw"></i> {{ _("Clear Cache") }}</a>
+                    <a class="dropdown-item" ng-click="app.logout()"><i class="me-50" data-feather="power"></i> {{ _("Logout") }}</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>

@@ -1,0 +1,142 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:{naming-series}-####",
+ "creation": "2023-02-15 11:35:17.895320",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "full_name",
+  "company",
+  "title",
+  "date_of_birth",
+  "email_1",
+  "email_2",
+  "division",
+  "column_break_gxbw4",
+  "naming_series",
+  "the_condition",
+  "gender",
+  "joining_date",
+  "type_of_job",
+  "phone_no",
+  "degree",
+  "section_break_9skm6",
+  "profile_picture"
+ ],
+ "fields": [
+  {
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "label": "Full Name"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Data",
+   "label": "Company"
+  },
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "label": "Title"
+  },
+  {
+   "fieldname": "date_of_birth",
+   "fieldtype": "Date",
+   "label": "Date of birth"
+  },
+  {
+   "fieldname": "email_1",
+   "fieldtype": "Data",
+   "label": "Email 1"
+  },
+  {
+   "fieldname": "email_2",
+   "fieldtype": "Data",
+   "label": "Email 2"
+  },
+  {
+   "fieldname": "division",
+   "fieldtype": "Data",
+   "label": "Division"
+  },
+  {
+   "fieldname": "column_break_gxbw4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "HTLawyer-emp-\nCLLaywer-emp-\nSLLawyer-emp-\nCLaywer-emp-\nFAttorney-emp-\nAccounting-emp-"
+  },
+  {
+   "fieldname": "the_condition",
+   "fieldtype": "Data",
+   "label": "The Condition"
+  },
+  {
+   "fieldname": "gender",
+   "fieldtype": "Select",
+   "label": "Gender",
+   "options": "M\nF"
+  },
+  {
+   "fieldname": "joining_date",
+   "fieldtype": "Date",
+   "label": "Joining Date"
+  },
+  {
+   "fieldname": "type_of_job",
+   "fieldtype": "Select",
+   "label": "Type of Job",
+   "options": "Head Team Lawyer\nConsultant Lawyer\nSpecialized Lawyer\nCivil Lawyer\nFellow Attorney\nAccounting"
+  },
+  {
+   "fieldname": "phone_no",
+   "fieldtype": "Phone",
+   "label": "Phone No"
+  },
+  {
+   "fieldname": "degree",
+   "fieldtype": "Data",
+   "label": "Degree"
+  },
+  {
+   "fieldname": "section_break_9skm6",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "profile_picture",
+   "fieldtype": "Attach Image",
+   "label": "Profile Picture"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-02-15 11:35:17.895320",
+ "modified_by": "Administrator",
+ "module": "Consumer",
+ "name": "EmployeeData",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

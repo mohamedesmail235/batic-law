@@ -1,0 +1,32 @@
+{
+ "attach_print": 0,
+ "channel": "System Notification",
+ "condition": "doc.date==nowdate()",
+ "creation": "2023-02-28 12:15:01.222697",
+ "date_changed": "date_and_time",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Court Session",
+ "enabled": 1,
+ "event": "Custom",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "Session starting:\nURL: {{doc.session_link_url}}",
+ "modified": "2023-02-28 13:59:25.599951",
+ "modified_by": "Administrator",
+ "module": "L-Management",
+ "name": "Court Session Starting",
+ "owner": "Administrator",
+ "property_value": "",
+ "recipients": [
+  {
+   "receiver_by_role": "Batic Agent"
+  }
+ ],
+ "send_system_notification": 0,
+ "send_to_all_assignees": 0,
+ "set_property_after_alert": "",
+ "subject": "Court Session: {{ doc.name }} starting",
+ "value_changed": "date_and_time"
+}

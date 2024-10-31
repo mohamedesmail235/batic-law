@@ -1,0 +1,56 @@
+<div class="app-content content" data-reportname="{{ __lang(reportView.report_name) }}">
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-md-9 col-12 mb-2">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <div class="breadcrumb-wrapper">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a ui-sref="app.reports" class="text-decoration-none text-dark"><i class="fa-lg text-secondary far fa-list-alt" style="margin-right:4px;position:relative;top:1px;"></i> {{ __lang('Reports') }}</a></li>
+                                <li class="breadcrumb-item active">{{ __lang(reportView.report_name) }}</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-header-right text-md-end col-md-3 col-12 d-md-block d-none">
+                <div class="mb-1 breadcrumb-right">
+                    <button type="button" class="btn btn-primary" ng-if="reports_has_generate.includes(reportView.report_name)" ng-click="reportView.toolbar.generate()">
+                        {{ __lang('Generate New Report') }}
+                    </button>
+                    <button type="button" class="btn btn-light" ng-click="reportView.toolbar.refresh()">
+                        <i class="far fa-sync-alt"></i>
+                    </button>
+                    <button type="button" class="btn btn-light" ng-click="reportView.toolbar.print()">
+                        <i class="far fa-print"></i> {{ __lang('Print') }}
+                    </button>
+                    <button type="button" class="btn btn-light" ng-click="reportView.toolbar.export()">
+                        <i class="far fa-file-download"></i> {{ __lang('Export') }}
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <div class="card card-page loading">
+                <div class="card-header">
+                    <div class="report-filter-area">
+                        <div ng-repeat="field in reportView.report.filters_list" ng-if="field.type!='Break'" class="form-group col-xxl-3 col-xl-3 col-lg-4">
+                            <report-filter-form-field field="field" data-fieldtype="{{field.type}}" ng-model="reportView.report.filters_data[field.name]"></report-filter-form-field>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="report-datatable" ng-if="!reportView.show_no_data"></div>
+                    <div class="datatable-no-data" ng-if="reportView.show_no_data">
+                        <div class="list-view-no-data">
+                            <div class="no-data-icon"></div>
+                            <h4>{{__lang('No Data Found')}}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

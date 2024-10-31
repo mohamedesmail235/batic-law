@@ -1,0 +1,41 @@
+{
+ "cards": [
+  {
+   "card": "total_clients"
+  },
+  {
+   "card": "satisfied_clients_card"
+  },
+  {
+   "card": "successfull_cases_card"
+  },
+  {
+   "card": "requests"
+  },
+  {
+   "card": "new_clients_card"
+  }
+ ],
+ "charts": [
+  {
+   "chart": "Case Attorney Chart",
+   "width": "Half"
+  },
+  {
+   "chart": "Case Type Chart",
+   "width": "Half"
+  }
+ ],
+ "creation": "2023-02-08 09:52:27.041538",
+ "dashboard_name": "Law Dashboard",
+ "docstatus": 0,
+ "doctype": "Dashboard",
+ "idx": 0,
+ "is_default": 0,
+ "is_standard": 1,
+ "modified": "2023-02-08 09:54:22.527257",
+ "modified_by": "Administrator",
+ "module": "Cases",
+ "name": "Law Dashboard",
+ "owner": "Administrator"
+}

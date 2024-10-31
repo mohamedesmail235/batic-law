@@ -1,0 +1,85 @@
+<div class="table-responsive-lg">
+    <table class="table table-bordered ng-datatable">
+        <thead>
+        <tr>
+            <th>{{ __lang('Employee ID') }}</th>
+            <th>{{ __lang('Employee Name') }}</th>
+            <th>{{ __lang('Task') }}</th>
+            <th>{{ __lang('Linked Docs') }}</th>
+            <th>{{ __lang('Spend Time') }}</th>
+            <th>{{ __lang('Last Update') }}</th>
+            <th>{{ __lang('Create At') }}</th>
+            <th>{{ __lang('Description') }}</th>
+            <th style="width:60px;"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-if="pageView.pageData.length" ng-repeat="row in pageView.pageData | startFrom:listView.list.pagination.currentPage*listView.list.pagination.pageSize | limitTo:listView.list.pagination.pageSize">
+            <td>{{row.user}}</td>
+            <td>{{row.user_name}}</td>
+            <td>{{row.task}}</td>
+            <td>{{row.linked_doc}}</td>
+            <td>{{row.spend_session_time}}</td>
+            <td>{{row.modified}}</td>
+            <td>{{parse_date(row.creation, 'MMMM d, yyyy')}}</td>
+            <td>{{row.description}}</td>
+            <td class="text-right">
+                <button type="button" class="btn btn-sm btn-outline-danger" ng-click="pageView.pageActions.delete('WorkTime',row.name)">
+                    <i class="far fa-trash-alt"></i>
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <list-pagination class-name="mt-2"
+                     ng-if="pageView.pageData.length"
+                     current-page="pageView.pagination.currentPage"
+                     page-size="pageView.pagination.pageSize"
+                     total-count="pageView.pageData.length"
+                     number-of-pages="pageView.pagination.numberOfPages(pageView.pageData)"
+                     page-size-list="[10,50,100]"
+    ></list-pagination>
+</div>
+
+<div class="modal fade" id="newTimesheetModal" tabindex="-1" aria-labelledby="newTimesheetModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" ng-submit="pageView.pageLayout.create_timesheet($event)">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="newTimesheetModalLabel">{{__lang('Add WorkTime (Manual)')}}</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" ng-class="{'modal-loading':pageView.pageLayout.form_loading}">
+                    <div class="row mb-2">
+                        <div class="col-md-6">
+                            <label for="start_session_time" class="form-label">{{__lang('Start Time')}}</label>
+                            <input type="datetime-local" class="form-control" name="start_session_time" id="start_session_time" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="end_session_time" class="form-label">{{__lang('End Time')}}</label>
+                            <input type="datetime-local" class="form-control" name="end_session_time" id="end_session_time" required>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-12">
+                            <label for="task" class="form-label">{{__lang('Select Task')}}</label>
+                            <select class="form-select" name="task" id="task" required>
+                                <option value="" default hidden disabled selected>{{__lang('Select Task')}}</option>
+                                <option ng-repeat="task in employee_task_list" value="{{task.value}}">{{task.description}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="task" class="form-label">{{__lang('Description')}}</label>
+                            <textarea class="form-control" rows="5" name="description" id="description" required></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" ng-disabled="pageView.pageLayout.form_loading" class="btn btn-primary">{{__lang('Create')}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

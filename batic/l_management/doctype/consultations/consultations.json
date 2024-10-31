@@ -1,0 +1,154 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:Consultations-{date}-{###}",
+ "creation": "2023-02-23 10:35:53.555433",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "date",
+  "contract",
+  "quotation",
+  "customer",
+  "column_break_vxwd",
+  "consultation_category",
+  "consultation_type",
+  "due_date",
+  "section_break_ywc7",
+  "agents",
+  "consultation_description",
+  "consultation_result",
+  "agents_advice",
+  "notemore_information",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "default": "Today",
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "agents",
+   "fieldtype": "Table",
+   "label": "Team Head Lawyer Agents",
+   "options": "Contract-Agents",
+   "reqd": 1
+  },
+  {
+   "fieldname": "consultation_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Consultation Type",
+   "options": "One Time\nMonthly",
+   "reqd": 1,
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "consultation_category",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Consultation Category",
+   "options": "Consultation Category",
+   "reqd": 1
+  },
+  {
+   "fieldname": "contract",
+   "fieldtype": "Link",
+   "label": "Contract",
+   "options": "Contract"
+  },
+  {
+   "fieldname": "due_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Due Date",
+   "mandatory_depends_on": "eval: doc.consultation_type == \"One Time\""
+  },
+  {
+   "fieldname": "consultation_description",
+   "fieldtype": "Text Editor",
+   "label": "Consultation Description",
+   "reqd": 1
+  },
+  {
+   "fieldname": "consultation_result",
+   "fieldtype": "Text Editor",
+   "in_list_view": 1,
+   "label": "Consultation Result",
+   "mandatory_depends_on": "eval: doc.consultation_status == \"Approved\""
+  },
+  {
+   "fieldname": "agents_advice",
+   "fieldtype": "Text Editor",
+   "label": "Agents Advice"
+  },
+  {
+   "fieldname": "notemore_information",
+   "fieldtype": "Text Editor",
+   "label": "Notes/More Information"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Consultations",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_ywc7",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_vxwd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Customer",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "fieldname": "quotation",
+   "fieldtype": "Link",
+   "label": "Quotation",
+   "options": "Quotation",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-07-18 12:45:35.777427",
+ "modified_by": "Administrator",
+ "module": "L-Management",
+ "name": "Consultations",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

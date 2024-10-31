@@ -1,0 +1,27 @@
+{
+ "attach_print": 0,
+ "channel": "System Notification",
+ "creation": "2023-08-25 15:14:45.441911",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Court Session",
+ "enabled": 1,
+ "event": "New",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "",
+ "modified": "2023-08-25 15:14:45.441911",
+ "modified_by": "Administrator",
+ "module": "L-Management",
+ "name": "Court Session",
+ "owner": "Administrator",
+ "recipients": [
+  {
+   "receiver_by_role": "All"
+  }
+ ],
+ "send_system_notification": 0,
+ "send_to_all_assignees": 0,
+ "subject": "A New Court {{ doc.name }} is Created for {{ doc.case_session }}!"
+}

@@ -1,0 +1,82 @@
+<style>
+    .pfp{
+        width: 75px;
+        height: 75px;
+        padding-top: 2%;
+        border-bottom: 3px dotted black; 
+        object-fit:cover;
+    }
+    .card-columns{
+        column-count: 5;
+    }
+</style>
+<div class="container-fluid align-items-center" style="position:absolute; height: 100%;">
+
+    <h3 style="Padding-bottom: 2%">Employee -> {{ title }}</h3>
+    <div class="employee-div h-45 w-25">
+        <div class="row" style="text-align: center; padding: 0px;">
+            <div class="col-6">
+                {% if employee.profile_picture %}
+                    <img class="rounded-circle pfp" alt="avatar1" src="/assets/frappe/images/default-avatar.png" />
+                {% else %}
+                    <img class="rounded-circle pfp" alt="avatar1" src="/assets/frappe/images/default-avatar.png" />
+                    <!-- <img class="rounded-circle pfp" alt="avatar1" src="${empData.profile_picture}" /> -->
+                {% endif %}
+            </div>
+            <div class="col-6">
+            </div>
+        </div>
+        <div class="row mt-3" style="text-align: center; padding: 0px;">
+            <div class="col-6">
+                <h5 class="text-dark" style="display: inline-block">{{ employee.full_name }}</h5>
+            </div>
+            <div class="col-6">
+                <h5 class="text-dark text-left">{% if not employee.title %}{{"No Title"}} {% else %} {{employee.title}} {% endif %}</h5>
+            </div>
+        </div>
+        <div class="row" style="text-align: center; padding: 0px;">
+            <div class="col-6">
+                <p class="card-text">{% if not employee.title %}{{"No Title"}} {% else %} {{employee.title}} {% endif %}</p>
+            </div>
+            <div class="col-6">
+                <!-- <h6>{{ employee.type_of_job }}</h6> -->
+            </div>
+        </div>
+    </div>
+    <h3 style="padding-top: 3%;">Tasks</h3>
+    <div class="row row-cols-3" style="font-size: 0.75vw; white-space: nowrap;">
+        {% for task in tasks %}
+            <div class="case-task" id="{{task.name}}" class="col" >
+                <div class="card" style="padding:20px;">
+                    <div class="row">
+                        <div class="col-5"><h4>{{task.case}}</h4></div>
+                        <div class="col-5 text-right bold" style="color: {{task.color}};">{{task.task_priority}}</div>
+                        <div class="col-2 dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <button class="btn btn btn-outline-success w-100" id="complete-{{task.name}}">Mark Complete</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row text-left mt-2" style="font-size: 14px;">
+                        <div class="col-5"><b>Task Description:</b></div>
+                        <div class="col-7">{{task.task_description}}</div>
+                    </div>
+                    <div class="row mt-2" style="font-size: 14px;">
+                        <div class="col-4"><b>Tasks Starts:</b></div>
+                        <div class="col-8">{{task.task_start_on}}</div>
+                    </div>
+                    <div class="row mt-2" style="font-size: 14px;">
+                        <div class="col-4"><b>Tasks Ends:</b></div>
+                        <div class="col-8">{{task.task_end_on}}</div>
+                    </div>
+                    <div class="verticalLine" style="background-color:{{task.color}}; width: 4px; height:100%; position: absolute; left: 0; top: 0; border-radius: 20%;"></div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+</div>
+     

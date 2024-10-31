@@ -1,0 +1,32 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-05-17 11:05:14.662798",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "poa"
+ ],
+ "fields": [
+  {
+   "fieldname": "poa",
+   "fieldtype": "Link",
+   "label": "POA",
+   "options": "Power of Attorney"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-05-17 11:06:29.233306",
+ "modified_by": "Administrator",
+ "module": "L-Management",
+ "name": "POAChildTable",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

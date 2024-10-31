@@ -1,0 +1,191 @@
+<div class="container-fluid">
+    <h4 id="requests_text" style="Padding-bottom: 2%">{{vacations.length}} vaction requests</h4>
+    <div class="container total_requests mw-100 " style="max-width: 100%">
+        <div class="row">
+            <div class="col-4">
+                <div class="bg-white rounded-lg p-5 shadow">
+                    <h2 class="h4 font-weight-bold text-center mb-4">My Vacation</h2>
+
+                    <div class="progress mx-auto" data-value="{{employee_vacation.total_days}}">
+                    <span class="progress-left">
+                                    <span class="progress-bar border-primary"></span>
+                    </span>
+                    <span class="progress-right">
+                                    <span class="progress-bar border-primary"></span>
+                    </span>
+                    <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
+                        {% if employee_vacation.msg %}
+                            <div class="h4 font-weight-bold">No Vacation<sup class="small"></sup></div>  
+                        {% else %}
+                                {% if employee_vacation.waiting %}
+                                    <div class="h5 mb-0">Waiting</div>
+                                {% else %}
+                                    <div class="h2 font-weight-bold">{{employee_vacation.percentage}}<sup class="small">%</sup></div>
+                                {% endif %}
+                        {% endif %}
+                    </div>
+                    </div>
+                    <div class="row text-center mt-4">
+                        <div class="col-12">
+                            {% if employee_vacation.msg %}
+                            <div class="h5 mb-0">Click to request for vacation</div>
+                            {% else %}
+                                {% if employee_vacation.waiting %}
+                                    <div class="h5 mb-0">Waiting for Approval</div>
+                                {% else %}
+                                    <div class="h4 font-weight-bold mb-0">{{employee_vacation.total_days}}</div><span class="small text-gray">{{employee_vacation.days_msg}}</span>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% if employee_vacation.msg %}
+                    <div class="row text-center mt-3">
+                        <div class="col-12">
+                            <a class="btn btn-primary" role="button" href="/app/vacation/new-vacation-1/?employee={{employee}}">Request for Vacation</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-8">
+                {% if employee.includes("HTLawyer") || employee.includes("Admin") %}
+                <div class="request-div row mt-3 overflow-y pb-3" style="padding-left: 2%; max-width: 100%; max-height: 250px; ">
+                    <div class="col-12">
+                            <div class="card border pr-5 shadow-sm bg-white">
+                                <div class="card-body">
+                                {% if vacations.length == 0 %}
+                                    <h4 class="text-primary">No Vacation Requests</h4>
+                                {% endif %}
+                                    {% for vacation in vacations %}
+                                    <div class="row pb-3 mt-2 data" id="request-{{vacation.name}}">
+                                        <div class="col-10">
+                                            <div class="row">
+                                                <div class="col-3 bold small">Employee</div>
+                                                <div class="col-4 bold small">Date</div>
+                                                <div class="col-2 bold small">Days</div>
+                                                <div class="col-3 bold small">Reason</div>
+                                            </div>
+                                            <div class="row pt-2">
+                                                <div class="col-3 small">{{vacation.full_name}}</div>
+                                                <div class="col-4 small">{{vacation.start_date.replaceAll("-", "/")}} <strong>-</strong> {{vacation.end_date.replaceAll("-", "/")}}</div>
+                                                <div class="col-2 small">{{vacation.days}}</div>
+                                                <div class="col-3 small">{{vacation.description}}</div>
+                                            </div>
+                                        </div>
+                                    <div class="col-2 text-right mx-0 my-0">
+                                        <div class="row text-center">
+                                            <div class="col-12 bold small">Action</div>
+                                        </div>
+                                        <div class="row pt-1">
+                                            <div class="col-6 bold">
+                                            <button type="button" id="accept-{{vacation.name}}" class="btn btn-primary small btn-sm py-0">Accept</button>
+                                            </div>
+                                            <div class="col-6 bold">
+                                            <button type="button" id="reject-{{vacation.name}}" class="btn btn-danger small btn-sm py-0">Decline</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                <div class="container py-5">
+                    <div class="row">
+                        <div class="col-12 px-0">
+                            <div class="row mt-3 overflow-y" style="padding-left: 2%; max-width: 100%; max-height: 250px; ">
+                                <div class="card w-100 border shadow-sm bg-white py-0 px-0">
+                                    <div class="card-title bold px-3 pt-4">Upcoming Vacations</div>
+                                    <div class="card-body px-3">
+                                        {% for holiday in holidays %}
+                                            <div class="row mb-3">
+                                                <div class="col-5 small text-primary">{{holiday[0][1]}}</div>
+                                                <div class="col-4 small">{{holiday[0][0]}}</div>
+                                                <div class="col-3 small">{{holiday[1]}} days left</div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <style>
+    .progress {
+  width: 150px;
+  height: 150px;
+  background: none;
+  position: relative;
+}
+
+.progress::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 6px solid #eee;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.progress>span {
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+}
+
+.progress .progress-left {
+  left: 0;
+}
+
+.progress .progress-bar {
+  width: 100%;
+  height: 100%;
+  background: none;
+  border-width: 6px;
+  border-style: solid;
+  position: absolute;
+  top: 0;
+}
+
+.progress .progress-left .progress-bar {
+  left: 100%;
+  border-top-right-radius: 80px;
+  border-bottom-right-radius: 80px;
+  border-left: 0;
+  -webkit-transform-origin: center left;
+  transform-origin: center left;
+}
+
+.progress .progress-right {
+  right: 0;
+}
+
+.progress .progress-right .progress-bar {
+  left: -100%;
+  border-top-left-radius: 80px;
+  border-bottom-left-radius: 80px;
+  border-right: 0;
+  -webkit-transform-origin: center right;
+  transform-origin: center right;
+}
+
+.progress .progress-value {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+  </style>

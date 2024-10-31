@@ -1,0 +1,40 @@
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-md-9 col-12 mb-2">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <div class="breadcrumb-wrapper">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item active"><a class="text-decoration-none text-dark"><i class="fa-lg text-secondary far fa-list-alt" style="margin-right:4px;position:relative;top:1px;"></i> {{ __lang('Reports') }}</a></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-header-right text-md-end col-md-3 col-12 d-md-block d-none">
+                <div class="mb-1 breadcrumb-right">
+                    <button type="button" class="btn btn-outline-light waves-effect waves-float" ng-click="listView.toolbar.refresh()">
+                        <i class="far fa-sync-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <div class="row match-height">
+                <div class="col-xxl-3 col-xl-4 col-lg-6" ng ng-repeat="workspace in app.workspaces" ng-if="(reports[workspace.name] && reports[workspace.name].length)">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title"><i class="mr-1" ng-class="app.get_workspace_icon((workspace.name).toLowerCase())"></i> {{ __lang('Reports of %s') | sprintf:[__lang(workspace.name | docTypeTitle)] }}</h4>
+                        </div>
+                        <div class="card-body">
+                            <a ng-repeat="report in reports[workspace.name]" class="windget-reports-link" ui-sref="app.report_view({workspace:convertToSlug(workspace.name),report_name:report.report_link})">{{__lang(report.report_name || report.report_link)}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

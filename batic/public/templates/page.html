@@ -1,0 +1,56 @@
+<div class="app-content content" ng-init="pageView.init()" data-page="{{ __lang(pageView.page) }}">
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-md-9 col-12 mb-2">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <div class="breadcrumb-wrapper">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item text-dark">{{ __lang('Page') }}</li>
+                                <li class="breadcrumb-item text-secondary active">{{ __lang(pageView.page | docTypeTitle) }}</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-header-right text-md-end col-md-3 col-12 d-md-block d-none">
+                <div class="mb-1 breadcrumb-right">
+                    <button type="button" class="btn btn-outline-light waves-effect waves-float" ng-click="pageView.toolbar.refresh()">
+                        <i class="far fa-sync-alt"></i>
+                    </button>
+                    <button type="button" ng-repeat="button in pageView.toolbar.buttons" ng-if="button.condition()" class="btn btn-primary waves-effect waves-float" ng-click="button.action()">
+                        {{button.label}}
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <div class="card card-page">
+                <div class="card-header" ng-if="pageView.toolbar.filters_list.length">
+                    <div class="report-filter-area w-100">
+                        <div ng-repeat="field in pageView.toolbar.filters_list" ng-if="(['Data','Check','Currency','Float','Date','Time','Link','Select']).includes(field.type)" class="form-group col-xxl-2 col-xl-3 col-lg-4">
+                            <filter-page-field field="field" ng-model="pageView.toolbar.filters_data[field.name]"></filter-page-field>
+                        </div>
+                        <div class="list-actions-btns">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive-lg" ng-if="Ctrl.pageView.view_type=='list'" style="margin-right:-10px;">
+                        <div class="report-datatable" ng-if="!pageView.listView.show_no_data"></div>
+                        <div class="datatable-no-data" ng-if="pageView.listView.show_no_data">
+                            <div class="list-view-no-data">
+                                <div class="no-data-icon"></div>
+                                <h4>{{__lang('No Data Found')}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="Ctrl.pageView.view_type=='custom'" ng-include="page_template(Ctrl.pageView.template() || Ctrl.pageView.pageName)"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

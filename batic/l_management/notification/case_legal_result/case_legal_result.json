@@ -1,0 +1,28 @@
+{
+ "attach_print": 0,
+ "channel": "System Notification",
+ "creation": "2023-08-25 14:51:40.018523",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Case",
+ "enabled": 1,
+ "event": "Value Change",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "",
+ "modified": "2023-08-25 14:51:40.018523",
+ "modified_by": "Administrator",
+ "module": "L-Management",
+ "name": "Case Legal Result",
+ "owner": "Administrator",
+ "recipients": [
+  {
+   "receiver_by_role": "All"
+  }
+ ],
+ "send_system_notification": 0,
+ "send_to_all_assignees": 0,
+ "subject": "{{ doc.name }} update legal case result {{ doc.legal_case_result }}",
+ "value_changed": "legal_case_result"
+}

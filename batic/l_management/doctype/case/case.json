@@ -1,0 +1,302 @@
+{
+ "actions": [],
+ "autoname": "format:Case-{case_no}",
+ "creation": "2023-02-23 17:11:24.421375",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "case_details_tab",
+  "case_title",
+  "contract",
+  "case_no",
+  "start_date_in_hijri",
+  "start_date",
+  "close_date_in_hijri",
+  "close_date",
+  "case_status_workflow",
+  "column_break_ydbu",
+  "customer",
+  "client_status",
+  "claim_type",
+  "case_category",
+  "judge",
+  "court",
+  "section",
+  "legal_case_result",
+  "section_break_vuaa",
+  "agent",
+  "description",
+  "contender_and_third__parties_tab",
+  "contender",
+  "evidence",
+  "third_parties",
+  "judgment_tab",
+  "judgment",
+  "status_of_the_appellate_judgment",
+  "appellate_judgment",
+  "verdict_of_the_supreme_court",
+  "reportread_tab",
+  "case_tasks",
+  "poa"
+ ],
+ "fields": [
+  {
+   "fieldname": "case_title",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Case Title",
+   "length": 50,
+   "reqd": 1
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Start Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "close_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Close Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "case_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Case No",
+   "length": 20,
+   "reqd": 1
+  },
+  {
+   "fieldname": "contender",
+   "fieldtype": "Table",
+   "label": "Contender",
+   "options": "Case Contenders",
+   "reqd": 1
+  },
+  {
+   "fieldname": "third_parties",
+   "fieldtype": "Table",
+   "label": "Third Parties",
+   "options": "Case Third Parties"
+  },
+  {
+   "fieldname": "agent",
+   "fieldtype": "Table",
+   "label": "Team Head Lawyer Agents",
+   "options": "Case Agents",
+   "reqd": 1
+  },
+  {
+   "fieldname": "client_status",
+   "fieldtype": "Select",
+   "label": "Client Status",
+   "options": "\nPlaintiff\nDefendant",
+   "reqd": 1
+  },
+  {
+   "fieldname": "contract",
+   "fieldtype": "Link",
+   "label": "Contract",
+   "options": "Contract",
+   "reqd": 1
+  },
+  {
+   "fieldname": "judge",
+   "fieldtype": "Link",
+   "label": "Judge",
+   "options": "Judge",
+   "reqd": 1
+  },
+  {
+   "fieldname": "court",
+   "fieldtype": "Link",
+   "label": "Court",
+   "options": "Court",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section",
+   "fieldtype": "Link",
+   "label": "Section",
+   "options": "Section",
+   "reqd": 1
+  },
+  {
+   "fieldname": "case_category",
+   "fieldtype": "Link",
+   "label": "Case Category",
+   "options": "Case Category",
+   "reqd": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description",
+   "options": " ",
+   "reqd": 1
+  },
+  {
+   "fieldname": "evidence",
+   "fieldtype": "Table",
+   "label": "Evidence",
+   "options": "EvidenceChildTable"
+  },
+  {
+   "fieldname": "case_tasks",
+   "fieldtype": "Table",
+   "label": "Case Tasks",
+   "options": "CaseTaskChildTable"
+  },
+  {
+   "fieldname": "poa",
+   "fieldtype": "Table",
+   "label": "POA",
+   "options": "POAChildTable"
+  },
+  {
+   "fieldname": "section_break_vuaa",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_ydbu",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "Customer",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "start_date_in_hijri",
+   "fieldtype": "Data",
+   "label": "Start Date in Hijri",
+   "reqd": 1
+  },
+  {
+   "fieldname": "close_date_in_hijri",
+   "fieldtype": "Data",
+   "label": "Close Date in Hijri",
+   "reqd": 1
+  },
+  {
+   "fieldname": "claim_type",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "label": "Claim Type",
+   "options": "\nFinancial\nOther"
+  },
+  {
+   "fieldname": "legal_case_result",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Legal Case Result",
+   "options": "\nWin\nFailure"
+  },
+  {
+   "fieldname": "judgment",
+   "fieldtype": "Text",
+   "label": "Judgment"
+  },
+  {
+   "fieldname": "appellate_judgment",
+   "fieldtype": "Text",
+   "label": "Appellate Judgment"
+  },
+  {
+   "fieldname": "status_of_the_appellate_judgment",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status of the Appellate Judgment",
+   "options": "\nAffirmation of the Judgment\nReversal of the Judgment"
+  },
+  {
+   "fieldname": "verdict_of_the_supreme_court",
+   "fieldtype": "Text",
+   "hidden": 1,
+   "label": "Verdict of the Supreme Court"
+  },
+  {
+   "fieldname": "case_details_tab",
+   "fieldtype": "Tab Break",
+   "label": "Case Details"
+  },
+  {
+   "fieldname": "judgment_tab",
+   "fieldtype": "Tab Break",
+   "label": "Judgment "
+  },
+  {
+   "fieldname": "contender_and_third__parties_tab",
+   "fieldtype": "Tab Break",
+   "label": "Contender/Evidence/Parties"
+  },
+  {
+   "fieldname": "reportread_tab",
+   "fieldtype": "Tab Break",
+   "label": "Reports(Read)"
+  },
+  {
+   "fieldname": "case_status_workflow",
+   "fieldtype": "Data",
+   "hidden": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-09-04 06:54:15.580196",
+ "modified_by": "Administrator",
+ "module": "L-Management",
+ "name": "Case",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Head Lawyer",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Lawyer",
+   "share": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

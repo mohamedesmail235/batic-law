@@ -1,0 +1,175 @@
+.tableHandle{
+    margin-top: 1%;
+    width: auto;
+    color: white
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    color: black
+  }
+  
+th, td {
+    text-align: left;
+    padding: 2px;
+  }
+  
+th {
+    background-color:  #93cae0;
+    color: white;
+  }
+  
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+tr:hover {
+    background-color: #ddd;
+  }
+
+.infocard {
+  background-color: rgb(125, 157, 161);
+  width: auto;
+  padding: 2%;
+  font-size: larger;
+  margin-top: 1.5%;
+  border-radius: 5px;
+  text-align: center;
+  color:  white;
+  font-weight: 700;
+}
+
+.hidden {
+  display: none;
+}
+
+.invoiceContainer{
+  margin-top: 2%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 76px;
+  box-shadow: 0 0 5px rgb(0 0 0 / 50%);
+  overflow: hidden;
+  min-height: 500px;
+}
+
+.invoiceHeader {
+display: flex;
+justify-content: space-around;
+background-color: whitesmoke;
+align-content: center;
+padding-top: 1.5%;
+padding-bottom: 1.5%;
+border-top-left-radius: 120px;
+border-top-right-radius: 120px;
+}
+
+.invoiceList {
+ display: flex;
+ justify-content: space-around;
+ margin-top: 1.5%;
+ background-color: rgb(255, 255, 255);
+ padding-top: 0.5%;
+ padding: 0.8%;
+ border-bottom:1px solid rgb(51 50 50 / 12%);
+}
+
+.invoiceList:last-child{
+  border-bottom: none;
+ padding-bottom: 9%;
+ border-bottom-left-radius: 76px;
+ border-bottom-right-radius: 76px;
+
+}
+.invoiceHeader h4{
+  width: 20%;
+  text-align: center;
+  font-weight: 300;
+}
+.invoiceList p{
+  width: 20%;
+  text-align: center;
+}
+.col-sm-2 div{
+  font-weight: 500;
+  text-align: center;
+  padding: 6px;
+}
+.col-sm-4 div{
+  font-weight: 500;
+  text-align: center;
+  padding: 6px;
+}
+
+.CShead{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.CSchild {
+  border-radius: 20px;
+  box-shadow:  0 0 5px rgba(0, 0, 0, 0.5);
+}
+.CSfirstChild {
+  width: 70%;
+  height: 60%;
+  border-radius: 20px;
+  box-shadow:  0 0 5px rgba(0, 0, 0, 0.5);
+  padding-bottom: 2%;
+}
+
+.taskhead{
+  background-color: whitesmoke;
+  margin-left: 0;
+}
+
+.pfp{
+	
+	width: 55px;
+	height: 55px;
+	padding-top: 2%; 
+	object-fit:cover;
+}
+
+
+.CSchildlast{
+  width: 30%;
+  margin: 0 -20px;
+  height: 300px;
+  padding: 1%;
+}
+.rightheader{
+  padding-top: 1%;
+}
+
+.imgName {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-bottom: 4%;
+}
+
+.imgName p {
+  padding-left: 2%;
+    font-size: initial;
+    font-weight: 500;
+}
+.rightlast {
+  display: flex;
+  flex-direction: column;
+}
+
+.data {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid whitesmoke;
+}
+
+.data p:last-child{
+  color:  blue;
+}
+
+.hidden {
+  display: none;
+}

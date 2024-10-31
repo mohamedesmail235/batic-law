@@ -1,0 +1,97 @@
+<div class="app-content content" data-doctype="{{ __lang(formView.doctype) }}">
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-md-9 col-12 mb-2">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <div class="breadcrumb-wrapper">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item text-dark" ng-if="getDoctype.issingle==0"><a ui-sref="app.list({parent:formView.parent,doctype:formView.doctype})" class="text-decoration-none text-dark">{{ __lang(formView.doctype | docTypeTitle) }}</a></li>
+                                <li class="breadcrumb-item text-secondary active" ng-if="formType=='new'">{{ formView.docname }}</li>
+                                <li class="breadcrumb-item text-secondary active" ng-if="formType=='view'">
+                                    {{ formView.docname }}
+                                    <span class="ms-1" ng-hide="Ctrl.formViewChanged" ng-bind-html="list_get_indicator_html(docData, formView.doctype)"></span>
+                                    <span class="ms-1" ng-if="Ctrl.formViewChanged">
+                                        <span class="indicator-pill orange">
+                                            <span class="ellipsis">{{ __lang('Not Saved') }}</span>
+                                        </span>
+                                    </span>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-header-right text-md-end col-md-3 col-12 d-md-block d-none">
+                <div class="mb-1 breadcrumb-right dropdown">
+                    <button type="button" class="btn btn-light" ng-click="formView.toolbar.refresh($event)" ng-if="formType=='view'">
+                        <i class="far fa-sync-alt"></i>
+                    </button>
+                    <button type="button" class="btn btn-light" ng-click="formView.toolbar.print($event)" ng-if="formType=='view' && getDoctype.issingle==0">
+                        <i class="far fa-print"></i>
+                    </button>
+                    <button type="button" class="btn btn-danger" ng-click="formView.toolbar.cancel($event)" ng-if="(formType=='view' && docData.docstatus==1) && formView.toolbar.show_doc_status(formView.doctype)">
+                        {{ __lang('Cancel') }}
+                    </button>
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-expanded="false" ng-if="(formType=='view' && formView.toolbar.has_action())"> {{ __lang('Actions') }} <i class="far fa-angle-down ml-1"></i></button>
+                    <div class="dropdown-menu dropdown-menu-right has-arrow">
+                        <button type="button" class="dropdown-item cursor-pointer" ng-repeat="action in formView.toolbar.actions" data-action-name="{{ action.name }}" ng-click="action.action()">{{ action.label }}</button>
+                    </div>
+                    <!--                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false" ng-if="formView.toolbar.show_actions(formView.doctype,docData.status)">-->
+                    <!--                        {{ __lang('Create') }}-->
+                    <!--                    </button>-->
+                    <!--                    <div class="dropdown-menu dropdown-menu-right" ng-if="formView.toolbar.show_actions(formView.doctype,docData.status)">-->
+                    <!--                        <a class="dropdown-item cursor-pointer" ng-click="formView.toolbar.create($event,'payment')" ng-if="docData.status=='Unpaid' || docData.status=='Credit Note Issued'|| docData.status=='Overdue'">{{ __lang('Payment') }}</a>-->
+                    <!--                        <a class="dropdown-item cursor-pointer" ng-click="formView.toolbar.create($event,'return')" ng-if="docData.status=='Unpaid' || docData.status=='Paid' || docData.status=='Overdue'">{{ __lang('Return') }}</a>-->
+                    <!--                    </div>-->
+                    <button type="button" class="btn btn-primary btn-form-save" ng-click="formView.toolbar.save($event)" ng-if="formType=='new'">
+                        {{ __lang('Save') }}
+                    </button>
+                    <button type="button" class="btn btn-primary btn-form-update" ng-click="formView.toolbar.update($event)" ng-if="(formType!='new' && getDoctype.issingle==0) && !Ctrl.is_submittable">
+                        {{ __lang('Update') }}
+                    </button>
+                    <button type="button" class="btn btn-primary btn-form-update" ng-click="formView.toolbar.update($event)" ng-if="(formType!='new' && getDoctype.issingle==1) && !Ctrl.is_submittable">
+                        {{ __lang('Update') }}
+                    </button>
+                    <button type="button" class="btn btn-primary btn-form-update" ng-click="formView.toolbar.update($event)" ng-if="Ctrl.is_submittable && (formType!='new' && getDoctype.issingle==0 && (docData.docstatus==0 && Ctrl.formViewChanged && (docData.docstatus!=1 || docData.docstatus!=2)))">
+                        {{ __lang('Update') }}
+                    </button>
+                    <button type="button" class="btn btn-primary" ng-click="formView.toolbar.submit($event)" ng-if="(formType=='view' && docData.docstatus==0 && Ctrl.is_submittable && !Ctrl.formViewChanged)">
+                        {{ __lang('Submit') }}
+                    </button>
+                    <button type="button" class="btn btn-danger" ng-click="formView.toolbar.cancel($event)" ng-if="(formType=='view' && docData.docstatus==1 && Ctrl.is_submittable && !Ctrl.formViewChanged)">
+                        {{ __lang('Cancel') }}
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <div class="card card-page">
+                <div class="card-body">
+                    <!--        <pre class="json-code"><code>formViewChanged={{Ctrl.formViewChanged}}</code></pre>-->
+                    <!--        <pre class="json-code"><code>docstatus={{docData.docstatus}}</code></pre>-->
+                    <!--<pre class="json-code"><code>{{ formView.form.data | json }}</code></pre>-->
+                    <form action="" method="post" id="doctypeForm" class="formView" ng-class="{'form-loading':(formType=='view')}" ng-submit="formView.form.submit($event)">
+                        <div class="row" ng-repeat="row in formView.form.view" data-row-depends-on="{{ row.depends_on }}">
+                            <div class="col-12" ng-if="row.title">
+                                <div class="section-form-head" ng-bind-html="row.title"></div>
+                            </div>
+                            <div class="col-12">
+                                <div ng-class="{'section-form-body pb-0 mb-2':row.title}">
+                                    <div class="row">
+                                        <div ng-repeat="column in row.fields" class="field-column col-xxl-{{ column.col }} col-lg-{{ (column.col==4 || column.col==3)?6:column.col }}" ng-class="(column.offset)?'offset-xxl-'+column.offset:''">
+                                            <form-field ng-if="column.field && column.field.name" field="column.field" ng-model="formView.form.data[column.field.name]" is-in-table="false"></form-field>
+                                            <form-field ng-if="column.fields && (field && field.name)" ng-repeat="field in column.fields" field="field" ng-model="formView.form.data[field.name]" is-in-table="false"></form-field>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

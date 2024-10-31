@@ -1,0 +1,29 @@
+{
+ "attach_print": 0,
+ "channel": "System Notification",
+ "condition": "doc.is_signed==1",
+ "creation": "2023-08-25 14:32:30.839368",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Contract",
+ "enabled": 1,
+ "event": "Value Change",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "",
+ "modified": "2023-08-25 14:32:30.839368",
+ "modified_by": "Administrator",
+ "module": "L-Management",
+ "name": "Contract Sign",
+ "owner": "Administrator",
+ "recipients": [
+  {
+   "receiver_by_role": "All"
+  }
+ ],
+ "send_system_notification": 0,
+ "send_to_all_assignees": 0,
+ "subject": "Contract {{ doc.name }} marked as Signed!",
+ "value_changed": "is_signed"
+}

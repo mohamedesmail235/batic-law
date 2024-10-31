@@ -1,0 +1,27 @@
+{
+ "attach_print": 0,
+ "channel": "System Notification",
+ "creation": "2023-08-25 11:01:26.988952",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Order",
+ "enabled": 1,
+ "event": "New",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "A new {{ doc.name }} Created!",
+ "modified": "2023-08-25 14:22:45.535774",
+ "modified_by": "Administrator",
+ "module": "L-Management",
+ "name": "Order",
+ "owner": "Administrator",
+ "recipients": [
+  {
+   "receiver_by_role": "All"
+  }
+ ],
+ "send_system_notification": 0,
+ "send_to_all_assignees": 1,
+ "subject": "A new {{ doc.order_typec }} Order {{ doc.name }} Created for {{ doc.customer }}!"
+}

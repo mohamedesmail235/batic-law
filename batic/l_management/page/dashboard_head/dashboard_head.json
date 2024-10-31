@@ -1,0 +1,19 @@
+{
+ "content": null,
+ "creation": "2023-03-08 10:08:44.215616",
+ "docstatus": 0,
+ "doctype": "Page",
+ "idx": 0,
+ "modified": "2023-03-08 10:08:44.215616",
+ "modified_by": "Administrator",
+ "module": "L-Management",
+ "name": "dashboard-head",
+ "owner": "Administrator",
+ "page_name": "dashboard-head",
+ "roles": [],
+ "script": null,
+ "standard": "Yes",
+ "style": null,
+ "system_page": 0,
+ "title": "Dashboard"
+}

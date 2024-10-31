@@ -1,0 +1,123 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:POA-{poa_no}",
+ "creation": "2023-02-23 16:46:00.846386",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "poa_no",
+  "issue_date_in_hijri",
+  "issue_date",
+  "expire_date_in_hijri",
+  "expire_date",
+  "column_break_gmm0",
+  "customer",
+  "agent",
+  "cases",
+  "legal_document",
+  "section_break_smad",
+  "description"
+ ],
+ "fields": [
+  {
+   "fieldname": "poa_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "POA No",
+   "reqd": 1
+  },
+  {
+   "fieldname": "issue_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Issue Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "expire_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Expire Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "legal_document",
+   "fieldtype": "Attach",
+   "in_list_view": 1,
+   "label": "Legal Document"
+  },
+  {
+   "fieldname": "agent",
+   "fieldtype": "Table",
+   "label": "Agent",
+   "options": "PoaAgentTable"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text",
+   "label": "Description"
+  },
+  {
+   "fieldname": "cases",
+   "fieldtype": "Link",
+   "label": "Case",
+   "options": "Case",
+   "read_only": 1
+  },
+  {
+   "fieldname": "issue_date_in_hijri",
+   "fieldtype": "Data",
+   "label": "Issue Date in Hijri",
+   "reqd": 1
+  },
+  {
+   "fieldname": "expire_date_in_hijri",
+   "fieldtype": "Data",
+   "label": "Expire Date in Hijri",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_smad",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_gmm0",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "Customer",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-08-17 13:03:58.194925",
+ "modified_by": "Administrator",
+ "module": "L-Management",
+ "name": "Power of Attorney",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

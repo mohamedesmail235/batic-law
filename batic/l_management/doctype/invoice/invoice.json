@@ -1,0 +1,70 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-04-13 14:00:02.912811",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "invoice_value",
+  "address_invoice",
+  "receipt",
+  "case"
+ ],
+ "fields": [
+  {
+   "fieldname": "invoice_value",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Invoice Value",
+   "reqd": 1
+  },
+  {
+   "fieldname": "address_invoice",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Address Invoice",
+   "reqd": 1
+  },
+  {
+   "fieldname": "receipt",
+   "fieldtype": "Attach",
+   "in_list_view": 1,
+   "label": "Receipt",
+   "reqd": 1
+  },
+  {
+   "fieldname": "case",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "case",
+   "options": "Case",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-04-13 14:00:02.912811",
+ "modified_by": "Administrator",
+ "module": "L-Management",
+ "name": "Invoice",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,111 @@
+<div class="app-content content" data-doctype="{{ __lang(listView.doctype) }}">
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-md-9 col-12 mb-2">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <div class="breadcrumb-wrapper">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item text-dark">{{ __lang(listView.doctype | docTypeTitle) }}</li>
+                                <li class="breadcrumb-item text-secondary active">{{ __lang('List') }}</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-header-right text-md-end col-md-3 col-12 d-md-block d-none">
+                <div class="mb-1 breadcrumb-right">
+                    <button type="button" class="btn btn-outline-light waves-effect waves-float" ng-click="listView.toolbar.refresh()">
+                        <i class="far fa-sync-alt"></i>
+                    </button>
+                    <button type="button" class="btn btn-primary waves-effect waves-float waves-light" ng-click="listView.toolbar.new()">
+                        <i class="far fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <div class="card">
+                <div class="card-header">
+                    <div class="report-filter-area w-100">
+                        <div class="form-group col-xxl-2 col-xl-3 col-lg-4">
+                            <filter-form-field field="{type:'Data',name:'name',title:__lang('ID')}" ng-model="listView.list.filters_data['name']"></filter-form-field>
+                        </div>
+                        <div ng-repeat="field in listView.list.filters_list" ng-if="(['Data','Check','Currency','Float','Date','Time','Link','Select']).includes(field.type)" class="form-group col-xxl-2 col-xl-3 col-lg-4">
+                            <filter-form-field field="field" ng-model="listView.list.filters_data[field.name]"></filter-form-field>
+                        </div>
+                        <div class="list-actions-btns">
+                            <button type="button" class="btn btn-danger waves-effect waves-float waves-light" ng-click="listView.list.bulk_actions.delete()" ng-if="listView.list.selected_ids.length"><i class="fal fa-trash-alt"></i> {{__lang('Delete {0} rows', [listView.list.selected_ids.length])}}</button>
+                            <div class="btn-group d-inline-block">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-outline-secondary waves-effect waves-float dropdown-toggle" data-toggle="dropdown" aria-expanded="false">{{listView.list.active_sort.label}}</button>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item cursor-pointer" ng-repeat="field in listView.list.sort_fields" ng-click="listView.list.change_order('field',field);" data-fieldname="{{field.fieldname}}" data-fieldlabel="{{field.fieldname}}">{{field.label}}</a>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-outline-secondary waves-effect waves-float btn-order" ng-click="listView.list.change_order('order')">
+                                    <i class="far" ng-class="(listView.list.active_sort.order=='desc')?'fa-sort-amount-down-alt':'fa-sort-amount-up-alt'"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive-lg">
+                        <table class="table table-bordered ng-datatable" ng-if="Ctrl.listView.columns.length">
+                            <thead ng-if="!listView.list.loading">
+                            <tr>
+                                <th class="text-center" style="width:30px;">
+                                    <div class="datatable-checkbox">
+                                        <input type="checkbox" id="select-all" ng-model="listView.list.is_select_all" ng-click="listView.list.select_all()" value="true">
+                                        <label for="select-all"></label>
+                                    </div>
+                                </th>
+                                <th ng-repeat="column in Ctrl.listView.columns" data-head-column="{{column.name}}" ng-class="($index>=2)?'hide-on-mobile':''" style="{{(column.width)?'width:'+column.width:''}}">{{ column.label }}</th>
+                                <th style="width:80px;"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-if="!listView.list.data.length && !listView.list.loading" style="background:transparent !important;">
+                                <td colspan="{{Ctrl.listView.columns.length+2}}">
+                                    <div class="list-view-no-data">
+                                        <div class="no-data-icon"></div>
+                                        <h4>{{__lang('No Data Found')}}</h4>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr ng-if="listView.list.loading" style="background:transparent !important;">
+                                <td colspan="{{Ctrl.listView.columns.length+2}}" class="text-center">
+                                    <span class="table-loading table-loading-sm"></span> {{ __lang('loading...')}}
+                                </td>
+                            </tr>
+                            <tr ng-repeat="row in listView.list.data | startFrom:listView.list.pagination.currentPage*listView.list.pagination.pageSize | limitTo:listView.list.pagination.pageSize" ng-if="listView.list.data.length">
+                                <td style="width:30px;text-align:center;">
+                                    <div class="datatable-checkbox">
+                                        <input type="checkbox" id="row-{{ row.name }}" ng-change="listView.list.select_id()" ng-model="listView.list.selected_rows[row.name]" value="true">
+                                        <label for="row-{{ row.name }}"></label>
+                                    </div>
+                                </td>
+                                <td ng-repeat="column in Ctrl.listView.columns" data-body-column="{{column.name}}" ng-class="($index>=2)?'hide-on-mobile':''" ng-html-compile="column.template"></td>
+                                <td class="text-start">
+                                    <span class="d-inline-block font-s-12 font-w-500" flow="left" tooltip="{{ parse_date(row.modified,'dd-MM-yyyy [hh:mm a]') }}"><i class="fal fa-calendar-alt mr-1"></i> {{ date_time_ago(row.modified) }}</span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <list-pagination class-name="mt-2"
+                                         ng-if="listView.list.data.length"
+                                         current-page="listView.list.pagination.currentPage"
+                                         page-size="listView.list.pagination.pageSize"
+                                         total-count="listView.list.data.length"
+                                         number-of-pages="listView.list.pagination.numberOfPages()"
+                                         page-size-list="[10,50,100]"
+                        ></list-pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

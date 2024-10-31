@@ -1,0 +1,183 @@
+<div class="row">
+    <div class="col-lg col-md-3 col-sm-6">
+        <div class="card text-center">
+            <div class="card-body">
+                <div class="avatar bg-light-info p-50 mb-1">
+                    <div class="avatar-content">
+                        <i class="far fa-layer-group"></i>
+                    </div>
+                </div>
+                <h2 class="fw-bolder">{{dashboard.admin.counts.total_customer}}</h2>
+                <p class="card-text">{{__lang('Total Cases')}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg col-md-3 col-sm-6">
+        <div class="card text-center">
+            <div class="card-body">
+                <div class="avatar bg-light-blue p-50 mb-1">
+                    <div class="avatar-content">
+                        <i class="far fa-poll-h"></i>
+                    </div>
+                </div>
+                <h2 class="fw-bolder">{{dashboard.admin.counts.total_success_cases}}</h2>
+                <p class="card-text">{{__lang('Active Cases')}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg col-md-3 col-sm-6">
+        <div class="card text-center">
+            <div class="card-body">
+                <div class="avatar bg-light-primary p-50 mb-1">
+                    <div class="avatar-content">
+                        <i class="far fa-clipboard-check"></i>
+                    </div>
+                </div>
+                <h2 class="fw-bolder">{{dashboard.admin.counts.total_satisfied}}</h2>
+                <p class="card-text">{{__lang('Appealed Cases')}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg col-md-3 col-sm-6">
+        <div class="card text-center">
+            <div class="card-body">
+                <div class="avatar bg-light-success p-50 mb-1">
+                    <div class="avatar-content">
+                        <i class="far fa-clock"></i>
+                    </div>
+                </div>
+                <h2 class="fw-bolder">{{dashboard.admin.counts.total_quotation_request}}</h2>
+                <p class="card-text">{{__lang('Finished Cases')}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg col-md-12 col-sm-12">
+        <div class="card text-center">
+            <div class="card-body">
+                <div class="avatar bg-light-warning p-50 mb-1">
+                    <div class="avatar-content">
+                        <i class="far fa-trophy"></i>
+                    </div>
+                </div>
+                <h2 class="fw-bolder">{{dashboard.admin.counts.total_new_customer}}</h2>
+                <p class="card-text">{{__lang('Cases Won')}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-6 col-md-12 col-12">
+        <div class="card card-browser-states">
+            <div class="card-header pb-0">
+                <div>
+                    <h4 class="card-title">{{__lang('Case Updates')}}</h4>
+                </div>
+                <div class="dropdown chart-dropdown"></div>
+            </div>
+            <div class="card-body">
+                <div id="cases-updates-chart"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6 col-md-12 col-12">
+        <div class="card card-browser-states">
+            <div class="card-header">
+                <div>
+                    <h4 class="card-title">{{__lang('Activity')}}</h4>
+                </div>
+                <div class="dropdown chart-dropdown"></div>
+            </div>
+            <div class="card-body">
+                <ul class="timeline ms-50" style="height:350px;">
+                    <li ng-repeat="activity in dashboard.admin.activity_log | startFrom:dashboard.pagination.currentPage*dashboard.pagination.pageSize | limitTo:dashboard.pagination.pageSize" class="timeline-item">
+                        <span class="timeline-point timeline-point-indicator timeline-point-warning"></span>
+                        <div class="timeline-event">
+                            <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
+                                <h6 ng-bind-html="activity.subject"></h6>
+                                <span class="timeline-event-time me-1"><i class="fal fa-clock mr-1"></i> {{activity.creation}}</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <list-pagination class-name="mt-2"
+                                 ng-if="dashboard.admin.activity_log.length"
+                                 current-page="dashboard.pagination.currentPage"
+                                 page-size="dashboard.pagination.pageSize"
+                                 total-count="dashboard.admin.activity_log.length"
+                                 number-of-pages="dashboard.pagination.numberOfPages(dashboard.admin.activity_log)"
+                                 page-size-list="[]"
+                ></list-pagination>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">{{__lang('Recent Clients')}}</h4>
+            </div>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>{{__lang('Customer')}}</th>
+                        <th>{{__lang('Num. of Orders')}}</th>
+                        <th>{{__lang('Num. of Quotations')}}</th>
+                        <th>{{__lang('Num. of Invoices')}}</th>
+                        <th>{{__lang('Num. of Payments')}}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="customer in dashboard.admin.recent_customers">
+                        <td>
+                            <div class="d-flex align-items-center gap-1">
+                                <img src="{{(customer.image)?customer.image:'/assets/batic/images/user.png'}}" class="rounded" height="40" width="40" alt="{{customer.customer_name}}">
+                                <idv>
+                                    <span class="fw-bold d-block">{{customer.customer_name}}</span>
+                                    <span class="text-secondary">{{customer.customer_type}}</span>
+                                </idv>
+                            </div>
+                        </td>
+                        <td>{{customer.number_of_order}}</td>
+                        <td>{{customer.number_of_quotation}}</td>
+                        <td>{{customer.number_of_invoice}}</td>
+                        <td>{{customer.number_of_payment}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-6">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">{{__lang('Cases Decided by Judgement')}}</h4>
+            </div>
+            <div class="table-responsive">
+                <table class="table" style="table-layout: fixed">
+                    <thead class="table-primary">
+                    <tr>
+                        <th>{{__lang('Case Title')}}</th>
+                        <th>{{__lang('Case No')}}</th>
+                        <th>{{__lang('Legal Case Result')}}</th>
+                        <th>{{__lang('Case Category')}}</th>
+                        <th>{{__lang('Case Status Workflow')}}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="case in dashboard.admin.head_lawyer_dashboard_case_decided">
+                        <td>{{case.case_title}}</td>
+                        <td>{{case.case_no}}</td>
+                        <td>{{case.legal_case_result}}</td>
+                        <td>{{case.case_category}}</td>
+                        <td>{{case.case_status_workflow}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

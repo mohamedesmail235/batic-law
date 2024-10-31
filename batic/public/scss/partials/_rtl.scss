@@ -1,0 +1,19 @@
+html[dir="rtl"] {
+  bdoy, div, h1, h2, h3, h4, h5, h6, p, li, a {
+    font-family: 'Alexandria', sans-serif;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  .tree-edit-buttons {
+    margin-left: 20px;
+    padding-right: 0;
+  }
+
+  .report-datatable, .report-datatable div {
+    direction: ltr;
+    text-align: revert;
+  }
+}

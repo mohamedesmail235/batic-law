@@ -1,0 +1,35 @@
+{
+ "cards": [
+  {
+   "card": "Total Cases"
+  },
+  {
+   "card": "Pending Cases"
+  },
+  {
+   "card": "Cases this year"
+  }
+ ],
+ "charts": [
+  {
+   "chart": "Case Attorney Chart",
+   "width": "Half"
+  },
+  {
+   "chart": "Case Type Chart",
+   "width": "Half"
+  }
+ ],
+ "creation": "2023-02-03 18:50:46.766420",
+ "dashboard_name": "Case Dashboard",
+ "docstatus": 0,
+ "doctype": "Dashboard",
+ "idx": 0,
+ "is_default": 0,
+ "is_standard": 1,
+ "modified": "2023-02-07 18:55:48.790381",
+ "modified_by": "Administrator",
+ "module": "Cases",
+ "name": "Case Dashboard",
+ "owner": "Administrator"
+}

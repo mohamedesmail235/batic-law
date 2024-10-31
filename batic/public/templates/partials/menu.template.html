@@ -1,0 +1,11 @@
+<li class="navigation-header"><span ng-bind="item.label"></span></li>
+<li class="nav-item" ng-repeat="link in item.list" ng-if="link.type=='link'" ui-sref-active="active">
+    <a ui-sref="app.list({workspace:'Batic',doctype:convertToSlug(link.link_to)})" class="d-flex align-items-center">
+        <i ng-class="link.icon"></i><span class="menu-title text-truncate">{{ __lang(link.label) }}</span>
+    </a>
+</li>
+<li class="nav-item" ui-sref-active="active">
+    <a class="d-flex align-items-center">
+        <i class="far fa-users"></i><span class="menu-title text-truncate" data-i18n="Top Employees">{{ __lang('Top Employees') }}</span>
+    </a>
+</li>

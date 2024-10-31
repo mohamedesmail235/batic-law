@@ -1,0 +1,22 @@
+<div class="container-fluid align-items-center" style="position:absolute; height: 100%;">
+	
+	<h3 style="Padding-bottom: 3%"> Top Employees</h3>
+
+	<div class="overflow-auto employee-list-div border border-dark rounded" style="padding-left: 2%; max-width: 100%; max-height: 550px; ">
+        <div class="container mt-3 py-5">
+            {% for employee in employees %}
+            <div class="row py-3 text-left align-center">
+                <div class="col-1 text-center"><img src="/assets/frappe/images/default-avatar.png" alt="img" width="35px;" height="35px" style="
+                    object-fit:cover;"></div>
+                <div class="col-2 med">{{employee.full_name}}</div>
+                <div class="col-2 med">{{employee.type_of_job}}</div>
+                <div class="col-1 med">{{employee.employee_tasks}}</div>
+                <div class="col-2 med">2 Days off</div>
+                <div class="col-1 med"> 12 hour extra</div>
+                <div class="col-1">{{employee.employee_tasks * 2}}</div>
+                <div class="col-1"><button class="btn btn-primary btn-sm small" type="button">Create gift</button></div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

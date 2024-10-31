@@ -1,0 +1,99 @@
+<div class="app-content content" data-doctype="{{ __lang(treeView.doctype) }}">
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-md-9 col-12 mb-2">
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <div class="breadcrumb-wrapper">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a class="text-decoration-none text-dark"><i class="fa-lg text-secondary" style="margin-right:4px;position:relative;top:1px;" ng-class="app.get_workspace_icon(treeView.workspace)"></i> {{ __lang(treeView.workspace | docTypeTitle) }}</a></li>
+                                <li class="breadcrumb-item active">{{ __lang(treeView.doctype | docTypeTitle) }}</li>
+                                <li class="breadcrumb-item active">{{ __lang('Tree') }}</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-header-right text-md-end col-md-3 col-12 d-md-block d-none">
+                <div class="mb-1 breadcrumb-right">
+                    <button type="button" class="btn btn-light waves-effect waves-float waves-ripple" ng-if="!treeView.toolbar.is_expanded" ng-click="treeView.toolbar.expand_all()"><i class="far fa-arrow-from-top"></i> {{ __lang('Expand All') }}</button>
+                    <button type="button" class="btn btn-light waves-effect waves-float waves-ripple" ng-if="treeView.toolbar.is_expanded" ng-click="treeView.toolbar.collapse_all()"><i class="far fa-arrow-from-bottom"></i> {{ __lang('Collapse All') }}</button>
+                    <button type="button" class="btn btn-light waves-effect waves-float waves-ripple" ng-click="treeView.toolbar.refresh()">
+                        <i class="far fa-sync-alt"></i>
+                    </button>
+                    <button type="button" class="btn btn-primary waves-effect waves-float waves-light" ng-click="treeView.toolbar.new()">
+                        <span class="show-on-mobile"><i class="far fa-plus"></i></span>
+                        <span class="hide-on-mobile">{{ __lang('New {0}',[__lang(treeView.doctype | docTypeTitle)]) }}</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <div class="card card-page loading">
+                <div class="card-header">
+                    <div class="report-filter-area w-100">
+                        <div class="col-xxl-3 col-xl-4 col-lg-6">
+                            <div class="form-group">
+                                <div class="form-field-select" tooltip="{{ __lang('Select Country') }}" style="width:100%;">
+                                    <select class="form-select" ng-model="treeView.filters.company">
+                                        <option ng-repeat="company in Ctrl.companies" value="{{ company.company_name }}">{{ company.company_name }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xxl-3 col-xl-4 col-lg-6 ms-auto">
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="far fa-search"></i></span>
+                                <input type="search" class="form-control input-tree-search" placeholder="{{ __lang('Search in tree') }}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="tree-view"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="newAccountModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <form action="#" method="post" ng-submit="treeView.modal.form.submit($event)">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{ __lang('New Account') }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="control-label">{{ __lang('New Account Name') }}</label>
+                        <div class="control-input-wrapper">
+                            <input type="text" class="form-control" ng-model="treeView.modal.form.data.account_name" required autocomplete="off">
+                            <p class="help-box small text-muted">{{ __lang("Note: Please don't create accounts for Customers and Suppliers") }}</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-field-check">
+                            <div class="form-checkbox">
+                                <input type="checkbox" id="field-check-is_group" ng-model="treeView.modal.form.data.is_group" ng-true-value="1" ng-false-value="0">
+                                <label for="field-check-is_group"></label>
+                            </div>
+                            <label for="field-check-is_group" class="ng-binding">{{ __lang('Is Group') }}</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">{{ __lang('Company') }}</label>
+                        <div class="control-input-wrapper">
+                            <input type="text" class="form-control" disabled readonly autocomplete="off" value="{{ app.defaults.company }}">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">{{ __lang('Create New') }}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

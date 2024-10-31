@@ -1,0 +1,6 @@
+/*
+* Page
+*/
+
+
+baticApp.page = {};

@@ -1,0 +1,58 @@
+
+<div class="container-fluid align-items-center" style="position:absolute; height: 100%;">
+	{% if allow %}
+	<button id="teamButton" type="button" class="float-right btn btn-outline-dark">+ Add new Team</button>
+	{% endif %}
+	<h3 style="Padding-bottom: 3%">Your Teams</h3>
+
+	<div class="overflow-auto employee-list-div border border-dark" style="padding-left: 2%; max-width: 100%; max-height: 550px; ">
+        
+		{% if teams.length == 0 %}
+		<h5 class="text-primary my-5">You are not in a team currently</h5>  
+		{% else%}
+			<div class="card-columns">
+				{% for team in teams %}
+					
+				<div class="card" id="{{team.name}}" style="text-align: center;">	
+					<img class="rounded-circle pfp" alt="avatar1" src="/assets/frappe/images/default-avatar.png" />
+					<div class="card-body">
+								<h5 class="card-title text-dark">{{team.team_name}}</h5>
+								<p class="card-text">{{team.total_cases}} Cases</p>
+					</div>
+				</div>
+				{% endfor %}
+			</div>	
+		{% endif %}
+    </div>
+</div>
+
+<style>
+.card{
+	cursor: pointer;
+}
+.card-columns{
+	column-count: 5;
+}
+.pfp{
+	
+	width: 125px;
+	height: 125px;
+	padding-top: 2%;
+	border-bottom: 3px dotted black; 
+	object-fit:cover;
+}
+.embed-responsive .card-img-top {
+    object-fit: cover;
+}
+.dark-mode .datatable {
+	--dt-border-color: #424242;
+	--dt-light-bg: #2e3538;
+	--dt-text-color: #dfe2e5;
+	--dt-text-light: #dfe2e5;
+	--dt-cell-bg: #1c1f20;
+	--dt-focus-border-width: 1px;
+	--dt-selection-highlight-color: var(--dt-light-bg);
+	--dt-toast-message-border: 1px solid var(--dt-border-color);
+	--dt-header-cell-bg: #262c2e;
+}
+</style>

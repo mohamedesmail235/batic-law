@@ -1,0 +1,19 @@
+{
+ "content": null,
+ "creation": "2023-02-09 11:04:46.362639",
+ "docstatus": 0,
+ "doctype": "Page",
+ "idx": 0,
+ "modified": "2023-02-09 11:04:46.362639",
+ "modified_by": "Administrator",
+ "module": "Consumer",
+ "name": "employee-page",
+ "owner": "Administrator",
+ "page_name": "employee-page",
+ "roles": [],
+ "script": null,
+ "standard": "Yes",
+ "style": null,
+ "system_page": 0,
+ "title": "Employee Homepage"
+}

@@ -1,0 +1,264 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format: Session-{session_no}-{###}",
+ "creation": "2023-02-24 09:36:29.915794",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "session_tab",
+  "session_details_section",
+  "session_no",
+  "session_link_url",
+  "date_in_hirji",
+  "session_date",
+  "session_time",
+  "column_break_gbul",
+  "weekday",
+  "subject",
+  "previous_session",
+  "next_session_hijri_date",
+  "next_session_date",
+  "tab_break_7hql",
+  "case_details_section",
+  "case_session",
+  "case_status",
+  "client",
+  "client_status",
+  "agent",
+  "column_break_tkyk",
+  "court",
+  "section",
+  "poa",
+  "contender_section",
+  "contenders",
+  "reports_tab",
+  "report_and_requirements_section",
+  "report",
+  "attendees",
+  "session_requirements"
+ ],
+ "fields": [
+  {
+   "fieldname": "session_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Session No",
+   "reqd": 1
+  },
+  {
+   "fieldname": "weekday",
+   "fieldtype": "Data",
+   "label": "Weekday",
+   "read_only": 1
+  },
+  {
+   "fieldname": "client",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Client",
+   "options": "Customer",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "client_status",
+   "fieldtype": "Select",
+   "label": "Client Status",
+   "options": "\nPlaintiff\nDefendant",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "court",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Court",
+   "options": "Court",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "section",
+   "fieldtype": "Link",
+   "label": "Section",
+   "options": "Section",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "subject",
+   "fieldtype": "Data",
+   "label": "Session Subject"
+  },
+  {
+   "fieldname": "previous_session",
+   "fieldtype": "Link",
+   "label": "Previous Session",
+   "options": "Court Session"
+  },
+  {
+   "fieldname": "next_session_date",
+   "fieldtype": "Date",
+   "label": "Next Session Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "next_session_hijri_date",
+   "fieldtype": "Data",
+   "label": "Next Session Hijri Date"
+  },
+  {
+   "fieldname": "agent",
+   "fieldtype": "Link",
+   "label": "Agent",
+   "options": "Employee",
+   "reqd": 1
+  },
+  {
+   "fieldname": "poa",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "POA",
+   "options": "Power of Attorney"
+  },
+  {
+   "fieldname": "session_link_url",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Session Link URL",
+   "reqd": 1
+  },
+  {
+   "fieldname": "report",
+   "fieldtype": "Text Editor",
+   "label": "Report"
+  },
+  {
+   "fieldname": "attendees",
+   "fieldtype": "Table",
+   "label": "Attendees",
+   "options": "Court Attendees"
+  },
+  {
+   "fieldname": "session_requirements",
+   "fieldtype": "Table",
+   "label": "Session Requirements",
+   "options": "Session Requirements"
+  },
+  {
+   "fieldname": "contenders",
+   "fieldtype": "Table",
+   "label": "Contender",
+   "options": "Case Contenders",
+   "reqd": 1
+  },
+  {
+   "fieldname": "case_session",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Case",
+   "options": "Case",
+   "reqd": 1
+  },
+  {
+   "fieldname": "date_in_hirji",
+   "fieldtype": "Data",
+   "label": "Session Date In Hirji",
+   "reqd": 1
+  },
+  {
+   "fieldname": "session_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Session Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "session_time",
+   "fieldtype": "Time",
+   "label": "Session Time"
+  },
+  {
+   "fieldname": "session_details_section",
+   "fieldtype": "Section Break",
+   "label": "Session Details"
+  },
+  {
+   "fieldname": "case_details_section",
+   "fieldtype": "Section Break",
+   "label": "Case Details"
+  },
+  {
+   "fieldname": "column_break_gbul",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_tkyk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "report_and_requirements_section",
+   "fieldtype": "Section Break",
+   "label": "Report and Requirements"
+  },
+  {
+   "fieldname": "contender_section",
+   "fieldtype": "Section Break",
+   "label": "Contender"
+  },
+  {
+   "fieldname": "tab_break_7hql",
+   "fieldtype": "Tab Break",
+   "label": "Case "
+  },
+  {
+   "fieldname": "reports_tab",
+   "fieldtype": "Tab Break",
+   "label": "Reports"
+  },
+  {
+   "fieldname": "session_tab",
+   "fieldtype": "Tab Break",
+   "label": "Session"
+  },
+  {
+   "default": "Trail Court",
+   "fieldname": "case_status",
+   "fieldtype": "Select",
+   "label": "Case Status",
+   "options": "Trail Court\nIn Appeal\nMotion for Review"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-07-18 15:04:59.770694",
+ "modified_by": "Administrator",
+ "module": "L-Management",
+ "name": "Court Session",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

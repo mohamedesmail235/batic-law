@@ -1,0 +1,50 @@
+<div class="dashboard-layout">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="dashboard-shortcuts">
+                <div class="row row-sm">
+                    <div class="col-xxl-3 xol-xl-4 col-lg-6" ng-repeat="shortcut in workspace.shortcuts" ng-if="shortcut.is_setup!=1">
+                        <a class="dashboard-shortcuts-item" ui-sref="{{(shortcut.is_single_doctype==1)?'app.form({workspace:workspace.name,doctype:convertToSlug(shortcut.link_to),type:Ctrl.view,docname:shortcut.link_to})':'app.list({workspace:workspace.name,doctype:convertToSlug(shortcut.link_to)})'}}">
+                            <i ng-class="(shortcut.icon.length)?shortcut.icon:'far fa-cog'"></i>
+                            <span>{{__lang(shortcut.label)}}</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-12">
+            <div class="row">
+                <div class="col-xl-6" ng-if="check_setup_count(workspace.shortcuts)">
+                    <div class="workspace-widget-links">
+                        <div class="workspace-widget-links-title">
+                            <h2>{{__lang("Setup")}}</h2>
+                            <i class="fal fa-cog"></i>
+                        </div>
+                        <div class="workspace-widget-links-body">
+                            <ul class="list-unstyled p-0 m-0">
+                                <li ng-repeat="shortcut in workspace.shortcuts" ng-if="shortcut.is_setup==1">
+                                    <a ui-sref="{{(shortcut.is_single_doctype==1)?'app.form({workspace:workspace.name,doctype:convertToSlug(shortcut.link_to),type:Ctrl.view,docname:shortcut.link_to})':'app.list({workspace:workspace.name,doctype:convertToSlug(shortcut.link_to)})'}}">{{__lang(shortcut.label)}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6" ng-if="workspace.reports.length">
+                    <div class="workspace-widget-links">
+                        <div class="workspace-widget-links-title">
+                            <h2>{{__lang("Reports")}}</h2>
+                            <i class="fal fa-chart-pie"></i>
+                        </div>
+                        <div class="workspace-widget-links-body">
+                            <ul class="list-unstyled p-0 m-0">
+                                <li ng-repeat="report in workspace.reports">
+                                    <a ui-sref="app.report_view({workspace:workspace.name,report_name:report.report_link})">{{__lang(report.report_name)}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

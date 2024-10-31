@@ -1,0 +1,125 @@
+<div class="row">
+    <div class="col-xl-6">
+        <div class="card card-profile">
+            <div class="bg-primary rounded-top" style="height: 100px;"></div>
+            <div class="card-body">
+                <div class="profile-image-wrapper">
+                    <div class="profile-image">
+                        <div class="avatar">
+                            <img src="../../../app-assets/images/portrait/small/avatar-s-9.jpg" alt="Profile Picture">
+                        </div>
+                    </div>
+                </div>
+                <h3>Curtis Stone</h3>
+                <h6 class="text-muted">Malaysia</h6>
+                <span class="badge badge-light-primary profile-badge">Pro Level</span>
+                <hr class="mb-2">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6 class="text-muted fw-bolder">Followers</h6>
+                        <h3 class="mb-0">10.3k</h3>
+                    </div>
+                    <div>
+                        <h6 class="text-muted fw-bolder">Projects</h6>
+                        <h3 class="mb-0">156</h3>
+                    </div>
+                    <div>
+                        <h6 class="text-muted fw-bolder">Rank</h6>
+                        <h3 class="mb-0">23</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12 col-md-12 col-12">
+        <div class="card card-browser-states">
+            <div class="card-header pb-0">
+                <div>
+                    <h4 class="card-title">{{__lang('Activity Track')}}</h4>
+                </div>
+                <div class="dropdown chart-dropdown"></div>
+            </div>
+            <div class="card-body">
+                <div id="cases-updates-chart"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">{{__lang('Cases Decided by Judgement')}}</h4>
+            </div>
+            <div class="table-responsive">
+                <table class="table" style="table-layout: fixed">
+                    <thead class="table-primary">
+                    <tr>
+                        <th>{{__lang('Case Title')}}</th>
+                        <th>{{__lang('Case No')}}</th>
+                        <th>{{__lang('Legal Case Result')}}</th>
+                        <th>{{__lang('Case Category')}}</th>
+                        <th>{{__lang('Case Status Workflow')}}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="case in dashboard.admin.head_lawyer_dashboard_case_decided">
+                        <td>{{case.case_title}}</td>
+                        <td>{{case.case_no}}</td>
+                        <td>{{case.legal_case_result}}</td>
+                        <td>{{case.case_category}}</td>
+                        <td>{{case.case_status_workflow}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-6 col-md-12 col-12">
+        <div class="card card-browser-states">
+            <div class="card-header">
+                <div>
+                    <h4 class="card-title">{{__lang('Activity')}}</h4>
+                </div>
+                <div class="dropdown chart-dropdown"></div>
+            </div>
+            <div class="card-body">
+                <ul class="timeline ms-50" style="height:350px;">
+                    <li ng-repeat="activity in dashboard.admin.activity_log | startFrom:dashboard.pagination.currentPage*dashboard.pagination.pageSize | limitTo:dashboard.pagination.pageSize" class="timeline-item">
+                        <span class="timeline-point timeline-point-indicator timeline-point-warning"></span>
+                        <div class="timeline-event">
+                            <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
+                                <h6 ng-bind-html="activity.subject"></h6>
+                                <span class="timeline-event-time me-1"><i class="fal fa-clock mr-1"></i> {{activity.creation}}</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <list-pagination class-name="mt-2"
+                                 ng-if="dashboard.admin.activity_log.length"
+                                 current-page="dashboard.pagination.currentPage"
+                                 page-size="dashboard.pagination.pageSize"
+                                 total-count="dashboard.admin.activity_log.length"
+                                 number-of-pages="dashboard.pagination.numberOfPages(dashboard.admin.activity_log)"
+                                 page-size-list="[]"
+                ></list-pagination>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6 col-md-12 col-12">
+        <div class="card card-browser-states">
+            <div class="card-header">
+                <div>
+                    <h4 class="card-title">{{__lang('To-Do List')}}</h4>
+                </div>
+                <div class="dropdown chart-dropdown"></div>
+            </div>
+            <div class="card-body">
+
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,120 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2023-05-23 16:16:57.539866",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "order_typec",
+  "column_break_ljeb",
+  "customer",
+  "due_date",
+  "section_break_mu5x",
+  "agents",
+  "order_details",
+  "reject_reason",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "no_copy": 1,
+   "options": "ORD-.YYYY.-",
+   "print_hide": 1,
+   "reqd": 1
+  },
+  {
+   "bold": 1,
+   "default": "Case",
+   "fieldname": "order_typec",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Order Type",
+   "options": "Case\nConsultations\nSetup Company\nOther Legal Services\nProject",
+   "reqd": 1,
+   "translatable": 1
+  },
+  {
+   "fieldname": "due_date",
+   "fieldtype": "Date",
+   "label": "Due Date"
+  },
+  {
+   "fieldname": "agents",
+   "fieldtype": "Table",
+   "label": "Team Head Lawyer Agents",
+   "options": "EmpOrders",
+   "reqd": 1
+  },
+  {
+   "fieldname": "order_details",
+   "fieldtype": "Text Editor",
+   "label": "Order Details",
+   "reqd": 1
+  },
+  {
+   "fieldname": "reject_reason",
+   "fieldtype": "Text",
+   "hidden": 1,
+   "label": "Reject Reason"
+  },
+  {
+   "fieldname": "column_break_ljeb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_mu5x",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Client",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Order",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-08-21 10:40:05.796860",
+ "modified_by": "Administrator",
+ "module": "L-Management",
+ "name": "Order",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

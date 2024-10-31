@@ -1,0 +1,215 @@
+
+<div class="container-fluid align-items-center">
+
+<button id="invoiceButton" type="button" class="float-right btn btn-outline-dark">+ Add new Invoice</button>
+<h3 style="Padding-bottom: 2%">Case -> {{title}} </h3>
+
+
+<div id="queryResult" class="CShead">
+    <div class="form-layout CSfirstChild" >
+        <div class="form-message hidden"></div>
+        <div class="form-page ">
+          <div class="form-tabs-list">
+            <ul class="nav form-tabs" id="form-tabs" role="tablist">
+              <li class="nav-item show">
+                <a class="nav-link active" id="case-doctype-__details-tab" data-toggle="tab" data-target="#tab1" role="tab" aria-controls="Details" aria-selected="true"> Overview </a>
+              </li>
+              <li class="nav-item show">
+                <a class="nav-link" id="case-doctype-tab_break_25zqn-tab" data-toggle="tab" data-target="#tab2" role="tab" aria-controls="Details" aria-selected="false"> Case tasks </a>
+              </li>
+              <li class="nav-item show">
+                <a class="nav-link " id="case-doctype-tab_break_swyak-tab" data-toggle="tab" data-target="#tab3" role="tab" aria-controls="Details"> Case files </a>
+              </li>
+              <li class="nav-item show">
+                <a class="nav-link " id="case-doctype-tab_break_swyak-tab" data-toggle="tab" data-target="#tab4" role="tab" aria-controls="Details"> Work History </a>
+              </li>
+              <li class="nav-item show">
+                <a class="nav-link " id="case-doctype-tab_break_swyak-tab" data-toggle="tab" data-target="#tab5" role="tab" aria-controls="Details"> Invoices </a>
+              </li>
+            </ul>
+          </div>
+          <div class="form-tab-content tab-content">
+            
+            <div class="tab-pane fade active show" id="tab1" role="tabpanel"  aria-labelledby="case-doctype-__details-tab">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="text-left mt-3">
+                            <h3>Details</h3>
+                                <div class="infocard">
+                                    <p>{{data.client}}</p>
+                                    <p>Start Date: {{data.start_date}}</p>
+                                    <p>Close Date: {{data.close_date}}</p>
+                                    <p>Status : {{data.case_status_workflow}}</p>
+                                    <p><a href="contracts/{{data.contract}}" style="text-decoration: underline;">Contract Type</a> : {{contractDetails.contract_type}}</P>
+                                        <p>Calculation Type : {{contractDetails.calculation_type}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="text-left mt-3">
+                                <h3>Description</h3>
+                                <p>{{data.description}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="case-doctype-__details-tab">
+                <div class="">
+                    {% if caseTaskLen == 0 %}
+                            <div class="mt-3">
+                                <h4 class="text-dark">No Case Task Registered!</h4>
+                            </div>
+                    {% else %}
+                        <div class="row col-12 mt-3 mb-3 taskhead" style="font-weight: bold;">
+                            <div class="col-sm-2"><div>Task Name</div></div>
+                            <div class="col-sm-2"><div>Team Name</div></div>
+                            <div class="col-sm-2"><div>priority</div></div>
+                            <div class="col-sm-4"><div>Beginning of the Task</div></div>
+                            <div class="col-sm-2"><div>Status</div></div>
+                        </div>
+                        <div class="row col-12 timeline ml-3">
+                            {{caseTaskTamplate}}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="case-doctype-__details-tab">
+                <div class="container">
+                    <div class="row mt-3">
+                        {% if evidenceLen == 0 %}
+                            <div class="col-sm-3 mt-3">
+                                <h4 class="text-dark">No Files Attached</h4>
+                            </div>
+                        {% else %}
+                            <div class="row">
+                                    {% for evi in evidence %}
+                                    <div class="col-sm-2 ml-4 card align-center" style="padding: 0px;">
+                                        {% if not evi.description %}
+                                            <a href="{{ evi.attach_document }}" class="align-center card-img-top mt-2" style="width: 50%" target="_blank">
+                                                <img src="/files/2606506_5845.jpg" alt="Files"/> 
+                                            </a>
+                                        {% else %}
+                                            <a href="/app/evidence/{{evi.name}}" class="align-center card-img-top mt-2" style="width: 50%" target="_blank">
+                                                <img src="/files/file-1453.png" class="card-img-top mt-2" alt="Files"/> 
+                                            </a>
+                                        {% endif %}
+                                        <div class="card-body">
+                                            <p class="card-text mr-3">
+                                                <a href="/app/evidence/{{evi.name}}" target="_blank" class="text-info" style="position: relative;">Edit {{evi.name}}</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                </div>
+            </div>
+            
+            <div class="tab-pane fade" id="tab4" role="tabpanel" aria-labelledby="case-doctype-__details-tab">
+                <div class="container">
+                    <div class="infocard">
+                        <p>Total Work Hours  : {{total_spend_times_case}} </p>
+                        <p>Total Work Attempt : {{total_attempt_case}}</p>
+                        <p>Number of Employee Participate   : {{total_unique_emp_worked}}</p>
+                    </div>
+                    <div class="titleList">
+                        <h3>Work Records</h3>
+                    </div>
+                    <div class="invoiceContainer {{hiddenValueForWorkTime}}" id="containerRoot">
+                        <div class="invoiceHeader">
+                            <h4>User</h4>
+                            <h4>Date</h4>
+                            <h4>Task</h4>
+                            <h4>Spend Time</h4>         
+                        </div>
+                        {{caseWorkListTamplate}}
+                    </div>
+                </div>
+            </div>
+            
+
+            <div class="tab-pane fade" id="tab5" role="tabpanel" aria-labelledby="case-doctype-__details-tab">
+                <div class="container">
+                    <div class="row mt-3">
+                        <div class="col-md-3">
+                            <div class="card" style="padding: 0px;">
+                                
+                                <div class="card-header">Total billing</div>
+                                <div class="card-body mt-3">
+                                    <h4 class="card-text text-primary" >${{total_bill}}</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card" style="padding: 0px;">
+                                
+                                <div class="card-header">Need to be Paid</div>
+                                <div class="card-body mt-3">
+                                    <h4 class="card-text text-primary" >${{Need_to_be_Paid}}</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card" style="padding: 0px;">
+                                
+                                <div class="card-header">Paid Amount</div>
+                                <div class="card-body mt-3">
+                                    <h4 class="card-text text-primary" >${{paidAmount}}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="invoiceContainer {{hiddenValueForInvoice}}">
+                        <div class="invoiceHeader">
+                            <h4>Invoice ID</h4>
+                            <h4>Date</h4>
+                            <h4>Value</h4>
+                            <h4>Address</h4>
+                            <h4>Receipt</h4>
+                        </div>
+                        {{invoiceTamplate}}
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+      </div> 
+    </div>
+
+    <div class="CSchild CSchildlast">
+        <h4 class="rightheader">Lawyer : </h4>
+        <div class="imgName">
+            <img class="rounded-circle pfp" alt="avatar1" width="20px" src="/assets/frappe/images/default-avatar.png" />
+            <p>Dear Name</p>
+        </div>
+        <div class="rightlast">
+           <div class="data">
+            <p>Create Case</p>
+            <p>Sam Karan</p>
+           </div>
+           <div class="data">
+            <p>Kind Of Case</p>
+            <p>Damage</p>
+           </div>
+           <div class="data">
+            <p>Case Date</p>
+            <p>10/20/30</p>
+           </div>
+           <div class="data">
+            <p>Task Name</p>
+            <p>Trail Book</p>
+           </div>
+        </div>
+    </div>
+
+</div>
+

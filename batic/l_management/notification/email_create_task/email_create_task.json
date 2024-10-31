@@ -1,0 +1,32 @@
+{
+ "attach_print": 0,
+ "channel": "System Notification",
+ "condition": "doc.is_approved==1",
+ "creation": "2023-09-26 11:11:54.323409",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Task",
+ "enabled": 1,
+ "event": "Value Change",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "Add your message here",
+ "modified": "2023-09-26 11:18:27.095966",
+ "modified_by": "Administrator",
+ "module": "L-Management",
+ "name": "Email Create Task",
+ "owner": "Administrator",
+ "recipients": [
+  {
+   "condition": "",
+   "receiver_by_role": "Employee"
+  }
+ ],
+ "send_system_notification": 1,
+ "send_to_all_assignees": 0,
+ "sender": "",
+ "sender_email": "",
+ "subject": "A New {{ doc.name }} Assigned on You!",
+ "value_changed": "is_approved"
+}
